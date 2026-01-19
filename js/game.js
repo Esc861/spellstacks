@@ -34,7 +34,6 @@
 
         // Events
         document.getElementById('addBtn').addEventListener('click', addWord);
-        document.getElementById('finishBtn').addEventListener('click', finish);
         document.getElementById('resetBtn').addEventListener('click', resetGame);
 
         document.getElementById('statsBtn').addEventListener('click', () => {
@@ -206,7 +205,6 @@
     }
 
     function finish() {
-        if (words.length === 0) return alert('Add at least one word!');
         done = true;
         updateStats();
         save();
