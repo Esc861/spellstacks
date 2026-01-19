@@ -27,7 +27,7 @@
             words = saved.words;
             done = saved.done;
         } else {
-            letters = LetterSystem.generateLetters();
+            letters = LetterSystem.generateLetters(new Date(), Dictionary.getWords());
         }
 
         render();
@@ -52,6 +52,7 @@
             document.getElementById('completeModal').classList.remove('show');
         });
         document.getElementById('shareBtn').addEventListener('click', share);
+        document.getElementById('replayBtn').addEventListener('click', replay);
 
         document.querySelectorAll('.modal').forEach(m => {
             m.addEventListener('click', e => {
@@ -231,8 +232,18 @@
         document.getElementById('completeModal').classList.add('show');
     }
 
+    function replay() {
+        used = new Set();
+        current = [];
+        words = [];
+        done = false;
+        document.getElementById('completeModal').classList.remove('show');
+        render();
+        save();
+    }
+
     function getScore() {
-        const score = Array.from(used).reduce((s, i) => s + LetterSystem.getPointValue(letters[i]), 0);
+        const score = words.reduce((s, w) => s + w.pts, 0);
         const bonus = used.size === 18 ? LetterSystem.ALL_LETTERS_BONUS : 0;
         return { score, bonus, total: score + bonus };
     }
@@ -243,6 +254,7 @@
         let text = `Spellstacks ${d}\nScore: ${total}`;
         if (bonus > 0) text += ` (perfect!)`;
         text += `\n${words.length} words, ${used.size}/18 letters`;
+        text += `\n\nhttps://spellstacks.com`;
 
         if (navigator.share) {
             navigator.share({ text }).catch(() => copy(text));

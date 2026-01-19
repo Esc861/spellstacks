@@ -142,10 +142,16 @@ const Dictionary = (function() {
         return isLoaded;
     }
 
+    // Get all words as an array
+    function getWords() {
+        return Array.from(wordSet);
+    }
+
     return {
         load,
         isValidWord,
         filterValidWords,
-        isReady
+        isReady,
+        getWords
     };
 })();

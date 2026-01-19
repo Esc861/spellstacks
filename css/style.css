@@ -88,6 +88,13 @@ header {
     color: var(--muted);
 }
 
+.objective {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
 .icon-btn {
     position: absolute;
     right: 0;

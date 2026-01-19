@@ -61,9 +61,91 @@ const LetterSystem = (function() {
         return available[available.length - 1][0];
     }
 
-    function generateLetters(date = new Date()) {
+    function generateLetters(date = new Date(), wordList = null) {
         const seed = getDateSeed(date);
         const rng = mulberry32(seed);
+
+        // If we have a word list, use word-based generation
+        if (wordList && wordList.length > 0) {
+            const result = generateFromWords(rng, wordList);
+            if (result) return result;
+        }
+
+        // Fallback to random generation
+        return generateRandom(rng);
+    }
+
+    function generateFromWords(rng, wordList) {
+        // Group words by length (2-9 letters only)
+        const byLength = {};
+        for (const word of wordList) {
+            if (word.length >= 2 && word.length <= 9) {
+                if (!byLength[word.length]) byLength[word.length] = [];
+                byLength[word.length].push(word);
+            }
+        }
+
+        // Shuffle each length group
+        for (const len in byLength) {
+            shuffle(byLength[len], rng);
+        }
+
+        // Patterns that sum to 18 letters
+        const patterns = [
+            [6, 6, 6],
+            [6, 6, 4, 2],
+            [6, 5, 5, 2],
+            [6, 5, 4, 3],
+            [5, 5, 5, 3],
+            [5, 5, 4, 4],
+            [7, 6, 5],
+            [7, 5, 4, 2],
+            [8, 6, 4],
+            [8, 5, 5],
+            [9, 5, 4],
+            [9, 6, 3],
+            [4, 4, 4, 4, 2],
+            [4, 4, 4, 3, 3],
+            [3, 3, 3, 3, 3, 3]
+        ];
+
+        // Shuffle patterns for variety
+        shuffle(patterns, rng);
+
+        // Try each pattern
+        for (const pattern of patterns) {
+            const words = [];
+            const indices = {};
+            let valid = true;
+
+            for (const len of pattern) {
+                if (!byLength[len] || byLength[len].length === 0) {
+                    valid = false;
+                    break;
+                }
+
+                const idx = indices[len] || 0;
+                if (idx >= byLength[len].length) {
+                    valid = false;
+                    break;
+                }
+
+                words.push(byLength[len][idx]);
+                indices[len] = idx + 1;
+            }
+
+            if (valid) {
+                // Extract letters from words and shuffle
+                const letters = words.join('').split('');
+                shuffle(letters, rng);
+                return letters;
+            }
+        }
+
+        return null;
+    }
+
+    function generateRandom(rng) {
         const letters = [];
 
         // Guarantee 5-6 vowels
@@ -91,13 +173,15 @@ const LetterSystem = (function() {
             letters.push(weightedSelect(rng, adjustedWeights));
         }
 
-        // Shuffle
-        for (let i = letters.length - 1; i > 0; i--) {
-            const j = Math.floor(rng() * (i + 1));
-            [letters[i], letters[j]] = [letters[j], letters[i]];
-        }
-
+        shuffle(letters, rng);
         return letters;
+    }
+
+    function shuffle(arr, rng) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(rng() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
     }
 
     function getPointValue(letter) {
