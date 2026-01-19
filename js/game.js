@@ -27,7 +27,7 @@
             words = saved.words;
             done = saved.done;
         } else {
-            letters = LetterSystem.generateLetters(new Date(), Dictionary.getWords());
+            letters = LetterSystem.generateLetters(new Date(), Dictionary.getCommonWords());
         }
 
         render();
@@ -134,7 +134,7 @@
             return;
         }
         container.innerHTML = words.map((w, i) =>
-            `<div class="word">${w.word} <span>+${w.pts}</span>${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
+            `<div class="word">${w.word}${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
         ).join('');
 
         container.querySelectorAll('button').forEach(btn => {
@@ -143,13 +143,13 @@
     }
 
     function renderScore() {
-        const { score, bonus } = getScore();
         const scoreEl = document.getElementById('score');
+        const remaining = 18 - used.size;
 
-        if (bonus > 0) {
-            scoreEl.innerHTML = `${score} <span class="bonus">+${bonus} bonus!</span>`;
+        if (used.size === 18) {
+            scoreEl.innerHTML = `<span class="complete">All letters used!</span>`;
         } else {
-            scoreEl.innerHTML = `${score} <span class="remaining">${used.size}/18</span>`;
+            scoreEl.innerHTML = `${used.size}/18 <span class="remaining">${remaining} left</span>`;
         }
     }
 
@@ -176,8 +176,7 @@
         if (!Dictionary.isValidWord(word)) return shake();
         if (words.some(w => w.word === word)) return shake();
 
-        const pts = current.reduce((s, i) => s + LetterSystem.getPointValue(letters[i]), 0);
-        words.push({ word, indices: [...current], pts });
+        words.push({ word, indices: [...current] });
         current.forEach(i => used.add(i));
         current = [];
 
@@ -221,12 +220,12 @@
     }
 
     function showComplete() {
-        const { score, bonus, total } = getScore();
-        document.getElementById('finalScore').textContent = total;
+        const perfect = used.size === 18;
+        document.getElementById('finalScore').textContent = `${used.size}/18`;
 
-        let summary = `${words.length} word${words.length !== 1 ? 's' : ''}, ${used.size}/18 letters`;
-        if (bonus > 0) {
-            summary += ` (+${bonus} bonus!)`;
+        let summary = `${words.length} word${words.length !== 1 ? 's' : ''}`;
+        if (perfect) {
+            summary = 'Perfect! ' + summary;
         }
         document.getElementById('summary').textContent = summary;
         document.getElementById('completeModal').classList.add('show');
@@ -242,18 +241,16 @@
         save();
     }
 
-    function getScore() {
-        const score = words.reduce((s, w) => s + w.pts, 0);
-        const bonus = used.size === 18 ? LetterSystem.ALL_LETTERS_BONUS : 0;
-        return { score, bonus, total: score + bonus };
-    }
-
     function share() {
         const d = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-        const { total, bonus } = getScore();
-        let text = `Spellstacks ${d}\nScore: ${total}`;
-        if (bonus > 0) text += ` (perfect!)`;
-        text += `\n${words.length} words, ${used.size}/18 letters`;
+        const perfect = used.size === 18;
+        let text = `Spellstacks ${d}`;
+        if (perfect) {
+            text += `\nPerfect! All 18 letters used`;
+        } else {
+            text += `\n${used.size}/18 letters`;
+        }
+        text += ` in ${words.length} word${words.length !== 1 ? 's' : ''}`;
         text += `\n\nhttps://spellstacks.com`;
 
         if (navigator.share) {
@@ -276,12 +273,11 @@
         if (stats.lastDate === today) return;
 
         const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-        const { total } = getScore();
 
         stats.played++;
         stats.streak = stats.lastDate === yesterday ? stats.streak + 1 : 1;
         stats.best = Math.max(stats.best, stats.streak);
-        stats.top = Math.max(stats.top, total);
+        if (used.size === 18) stats.top++;
         stats.lastDate = today;
         localStorage.setItem('ww_stats', JSON.stringify(stats));
     }

@@ -132,13 +132,11 @@ header {
 }
 
 .word span {
-    margin-left: auto;
-    color: var(--green);
-    font-size: 14px;
+    display: none;
 }
 
 .word button {
-    margin-left: 10px;
+    margin-left: auto;
     width: 24px;
     height: 24px;
     border: none;
@@ -206,9 +204,9 @@ header {
     color: var(--muted);
 }
 
-.score .bonus {
+.score .complete {
     display: block;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--green);
 }
@@ -241,12 +239,7 @@ header {
 }
 
 .tile span {
-    position: absolute;
-    bottom: 2px;
-    right: 4px;
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--muted);
+    display: none;
 }
 
 .tile:active:not(:disabled) { transform: scale(0.95); }
