@@ -72,7 +72,6 @@
         document.getElementById('resetBtn').style.display =
             (words.length > 0 && !done) ? 'block' : 'none';
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
-        document.getElementById('finishBtn').style.display = done ? 'none' : 'block';
         document.getElementById('completedMessage').style.display = done ? 'block' : 'none';
 
         if (done) {
@@ -171,8 +170,13 @@
         current.forEach(i => used.add(i));
         current = [];
 
-        render();
-        save();
+        // Auto-finish if all 18 letters are used
+        if (used.size === 18) {
+            finish();
+        } else {
+            render();
+            save();
+        }
     }
 
     function removeWord(idx) {
