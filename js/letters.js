@@ -1,26 +1,9 @@
 /**
- * Letter generation and scoring system
+ * Letter generation system
  */
 
 const LetterSystem = (function() {
-    // Point values - more spread, still based on frequency
-    // Lower = more common, Higher = rarer
-    const POINT_VALUES = {
-        'E': 1, 'A': 1,
-        'I': 2, 'O': 2, 'N': 2, 'T': 2,
-        'R': 3, 'S': 3, 'L': 3,
-        'D': 4, 'U': 4, 'C': 4,
-        'M': 5, 'G': 5, 'H': 5,
-        'P': 6, 'B': 6, 'W': 6, 'F': 6, 'Y': 6,
-        'K': 7, 'V': 7,
-        'J': 8, 'X': 8,
-        'Q': 10, 'Z': 10
-    };
-
-    // Bonus for using all 18 letters
-    const ALL_LETTERS_BONUS = 25;
-
-    // Letter frequency weights for selection
+    // Letter frequency weights for fallback generation
     const LETTER_WEIGHTS = {
         'E': 12.7, 'T': 9.1, 'A': 8.2, 'O': 7.5, 'I': 7.0, 'N': 6.7,
         'S': 6.3, 'H': 6.1, 'R': 6.0, 'D': 4.3, 'L': 4.0, 'C': 2.8,
@@ -184,20 +167,8 @@ const LetterSystem = (function() {
         }
     }
 
-    function getPointValue(letter) {
-        return POINT_VALUES[letter.toUpperCase()] || 0;
-    }
-
-    function calculateLetterPoints(letters) {
-        return letters.reduce((sum, letter) => sum + getPointValue(letter), 0);
-    }
-
     return {
         generateLetters,
-        getPointValue,
-        calculateLetterPoints,
-        getDateSeed,
-        POINT_VALUES,
-        ALL_LETTERS_BONUS
+        getDateSeed
     };
 })();

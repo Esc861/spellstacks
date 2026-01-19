@@ -34,7 +34,6 @@
 
         // Events
         document.getElementById('addBtn').addEventListener('click', addWord);
-        document.getElementById('clearBtn').addEventListener('click', clearWord);
         document.getElementById('finishBtn').addEventListener('click', finish);
         document.getElementById('resetBtn').addEventListener('click', resetGame);
 
@@ -87,9 +86,7 @@
             const isUsed = used.has(i);
             const isSel = current.includes(i);
             const cls = isUsed ? 'tile used' : isSel ? 'tile sel' : 'tile';
-            return `<button class="${cls}" data-i="${i}" ${isUsed || done ? 'disabled' : ''}>
-                ${l}<span>${LetterSystem.getPointValue(l)}</span>
-            </button>`;
+            return `<button class="${cls}" data-i="${i}" ${isUsed || done ? 'disabled' : ''}>${l}</button>`;
         }).join('');
 
         rack.querySelectorAll('.tile:not(.used)').forEach(btn => {
@@ -158,12 +155,6 @@
         const idx = current.indexOf(i);
         if (idx >= 0) current.splice(idx, 1);
         else current.push(i);
-        renderRack();
-        renderBuilder();
-    }
-
-    function clearWord() {
-        current = [];
         renderRack();
         renderBuilder();
     }

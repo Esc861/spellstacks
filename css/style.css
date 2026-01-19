@@ -131,9 +131,6 @@ header {
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
-.word span {
-    display: none;
-}
 
 .word button {
     margin-left: auto;
@@ -238,13 +235,8 @@ header {
     transition: transform 0.1s, border-color 0.1s;
 }
 
-.tile span {
-    display: none;
-}
-
 .tile:active:not(:disabled) { transform: scale(0.95); }
 .tile.sel { border-color: var(--accent); background: var(--accent); color: #fff; }
-.tile.sel span { color: rgba(255,255,255,0.7); }
 .tile.used { opacity: 0.25; }
 
 /* Buttons */
@@ -272,13 +264,15 @@ header {
 
 .reset-btn {
     display: none;
-    width: 100%;
-    margin-bottom: 8px;
+    width: auto;
+    margin: 0 auto 8px;
     background: transparent;
     border: 1px solid var(--tile-border);
+    border-radius: 8px;
     color: var(--muted);
-    font-size: 14px;
-    padding: 10px;
+    font-size: 13px;
+    padding: 8px 16px;
+    cursor: pointer;
 }
 
 .finish-btn {
