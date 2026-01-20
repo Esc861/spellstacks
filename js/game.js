@@ -8,52 +8,9 @@
     let words = [];
     let done = false;
     let stats = { played: 0, streak: 0, best: 0, fewest: null, lastDate: null };
-    let soundEnabled = localStorage.getItem('ss_sound') !== 'off';
-
-    // Audio context for sound effects
-    let audioCtx = null;
-    function getAudioContext() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        return audioCtx;
-    }
-
-    function playTone(freq, duration, type = 'sine', volume = 0.15) {
-        if (!soundEnabled) return;
-        try {
-            const ctx = getAudioContext();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = type;
-            osc.frequency.value = freq;
-            gain.gain.value = volume;
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            osc.stop(ctx.currentTime + duration);
-        } catch (e) {}
-    }
-
-    function playTap() { playTone(600, 0.08, 'sine', 0.1); }
-    function playSuccess() {
-        playTone(523, 0.1); // C
-        setTimeout(() => playTone(659, 0.1), 80); // E
-        setTimeout(() => playTone(784, 0.15), 160); // G
-    }
-    function playError() { playTone(200, 0.15, 'square', 0.1); }
-    function playComplete() {
-        [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => playTone(f, 0.2, 'sine', 0.12), i * 100));
-    }
 
     function haptic(pattern = 10) {
         if (navigator.vibrate) navigator.vibrate(pattern);
-    }
-
-    function updateSoundIcon() {
-        document.querySelector('.sound-on').style.display = soundEnabled ? 'block' : 'none';
-        document.querySelector('.sound-off').style.display = soundEnabled ? 'none' : 'block';
     }
 
     function confetti() {
@@ -111,14 +68,6 @@
             document.getElementById('statsModal').classList.add('show');
         });
 
-        // Sound toggle
-        updateSoundIcon();
-        document.getElementById('soundBtn').addEventListener('click', () => {
-            soundEnabled = !soundEnabled;
-            localStorage.setItem('ss_sound', soundEnabled ? 'on' : 'off');
-            updateSoundIcon();
-            if (soundEnabled) playTap();
-        });
         document.getElementById('closeStats').addEventListener('click', () => {
             document.getElementById('statsModal').classList.remove('show');
         });
@@ -222,7 +171,6 @@
     function toggleTile(i) {
         if (done || used.has(i) || current.includes(i)) return;
         current.push(i);
-        playTap();
         haptic(10);
         renderRack();
         renderBuilder();
@@ -246,7 +194,6 @@
         words.unshift({ word, indices: [...current] });
         current.forEach(i => used.add(i));
         current = [];
-        playSuccess();
         haptic(20);
 
         // Auto-finish if all 18 letters are used
@@ -281,7 +228,6 @@
     function shake() {
         const b = document.getElementById('builder');
         b.classList.add('shake');
-        playError();
         haptic([50, 30, 50]);
         setTimeout(() => b.classList.remove('shake'), 300);
     }
@@ -290,7 +236,6 @@
         done = true;
         updateStats();
         save();
-        playComplete();
         haptic([50, 50, 50, 50, 100]);
         confetti();
         showComplete();

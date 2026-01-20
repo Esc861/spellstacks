@@ -120,7 +120,12 @@ header {
 }
 
 .icon-btn.stats-btn { right: 0; }
-.icon-btn.sound-btn { left: 0; }
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
 
 .icon-btn svg {
     width: 18px;
@@ -459,5 +464,70 @@ header {
     100% {
         opacity: 0;
         transform: translateY(100vh) rotate(720deg) scale(0.5);
+    }
+}
+
+/* Desktop layout */
+@media (min-width: 700px) {
+    .app {
+        max-width: 680px;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "header header"
+            "objective objective"
+            "words controls"
+            "reset reset";
+        gap: 16px;
+    }
+
+    header { grid-area: header; }
+    .objective { grid-area: objective; margin: 0; }
+    .words { grid-area: words; margin: 0; }
+    .reset-btn { grid-area: reset; margin: 0; max-width: 200px; justify-self: center; }
+    .completed-message { grid-area: reset; margin: 0; }
+
+    .controls {
+        grid-area: controls;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .builder, .score, .rack, .actions {
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .logo-letter {
+        width: 26px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .objective { font-size: 15px; }
+
+    .score {
+        font-size: 32px;
+        padding: 8px 0;
+    }
+
+    .builder {
+        height: 52px;
+    }
+
+    .tile {
+        font-size: 18px;
+    }
+
+    .word {
+        font-size: 17px;
+        padding: 10px 14px;
+    }
+
+    .btn, .reset-btn {
+        padding: 12px;
     }
 }
