@@ -107,7 +107,6 @@ header {
 
 .icon-btn {
     position: absolute;
-    right: 0;
     top: 4px;
     width: 28px;
     height: 24px;
@@ -119,6 +118,9 @@ header {
     align-items: center;
     justify-content: center;
 }
+
+.icon-btn.stats-btn { right: 0; }
+.icon-btn.sound-btn { left: 0; }
 
 .icon-btn svg {
     width: 18px;
@@ -432,3 +434,30 @@ header {
 }
 
 .shake { animation: shake 0.25s ease; }
+
+/* Confetti */
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    opacity: 0;
+}
+
+@keyframes confetti-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg) scale(0.5);
+    }
+}
