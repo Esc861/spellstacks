@@ -77,6 +77,20 @@
     <script src="js/letters.js"></script>
     <script src="js/dictionary.js"></script>
     <script src="js/game.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+            reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+                newWorker.addEventListener('statechange', () => {
+                    if (newWorker.state === 'activated') {
+                        window.location.reload();
+                    }
+                });
+            });
+        });
+    }
+    </script>
     <script data-goatcounter="https://esc861.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
