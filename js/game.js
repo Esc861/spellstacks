@@ -7,7 +7,7 @@
     let current = [];
     let words = [];
     let done = false;
-    let stats = { played: 0, streak: 0, best: 0, top: 0, lastDate: null };
+    let stats = { played: 0, streak: 0, best: 0, fewest: null, lastDate: null };
 
     async function init() {
         const today = new Date();
@@ -40,7 +40,7 @@
             document.getElementById('statPlayed').textContent = stats.played;
             document.getElementById('statStreak').textContent = stats.streak;
             document.getElementById('statBest').textContent = stats.best;
-            document.getElementById('statTop').textContent = stats.top;
+            document.getElementById('statFewest').textContent = stats.fewest !== null ? stats.fewest : '-';
             document.getElementById('statsModal').classList.add('show');
         });
         document.getElementById('closeStats').addEventListener('click', () => {
@@ -215,12 +215,11 @@
     }
 
     function showComplete() {
-        const perfect = used.size === 18;
-        document.getElementById('finalScore').textContent = `${used.size}/18`;
+        document.getElementById('finalScore').textContent = words.length;
 
-        let summary = `${words.length} word${words.length !== 1 ? 's' : ''}`;
-        if (perfect) {
-            summary = 'Perfect! ' + summary;
+        let summary = `word${words.length !== 1 ? 's' : ''} to use all 18 letters`;
+        if (stats.fewest !== null && words.length <= stats.fewest) {
+            summary = `Your best! ${summary}`;
         }
         document.getElementById('summary').textContent = summary;
         document.getElementById('completeModal').classList.add('show');
@@ -238,15 +237,9 @@
 
     function share() {
         const d = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-        const perfect = used.size === 18;
         let text = `Spellstacks ${d}`;
-        if (perfect) {
-            text += `\nPerfect! All 18 letters used`;
-        } else {
-            text += `\n${used.size}/18 letters`;
-        }
-        text += ` in ${words.length} word${words.length !== 1 ? 's' : ''}`;
-        text += `\n\nhttps://spellstacks.com`;
+        text += `\nI used all 18 letters in ${words.length} word${words.length !== 1 ? 's' : ''}!`;
+        text += `\n\nCan you do better? Join me!\nhttps://spellstacks.com`;
 
         if (navigator.share) {
             navigator.share({ text }).catch(() => copy(text));
@@ -272,7 +265,11 @@
         stats.played++;
         stats.streak = stats.lastDate === yesterday ? stats.streak + 1 : 1;
         stats.best = Math.max(stats.best, stats.streak);
-        if (used.size === 18) stats.top++;
+        if (used.size === 18) {
+            if (stats.fewest === null || words.length < stats.fewest) {
+                stats.fewest = words.length;
+            }
+        }
         stats.lastDate = today;
         localStorage.setItem('ww_stats', JSON.stringify(stats));
     }
