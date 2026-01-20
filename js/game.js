@@ -135,12 +135,11 @@
 
     function renderScore() {
         const scoreEl = document.getElementById('score');
-        const remaining = 18 - used.size;
 
         if (used.size === 18) {
             scoreEl.innerHTML = `<span class="complete">All letters used!</span>`;
         } else {
-            scoreEl.innerHTML = `${used.size}/18 <span class="remaining">${remaining} left</span>`;
+            scoreEl.textContent = `${used.size}/18`;
         }
     }
 
@@ -166,7 +165,7 @@
         if (!Dictionary.isValidWord(word)) return shake();
         if (words.some(w => w.word === word)) return shake();
 
-        words.push({ word, indices: [...current] });
+        words.unshift({ word, indices: [...current] });
         current.forEach(i => used.add(i));
         current = [];
 
