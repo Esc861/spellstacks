@@ -96,9 +96,9 @@ header {
 
 .objective {
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--muted);
-    margin: 4px 0;
+    margin: 8px 0;
     flex-shrink: 0;
 }
 
