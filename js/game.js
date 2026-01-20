@@ -68,8 +68,7 @@
         renderScore();
 
         // Show/hide buttons based on game state
-        document.getElementById('resetBtn').style.display =
-            (words.length > 0 && !done) ? 'block' : 'none';
+        document.getElementById('resetBtn').style.display = done ? 'none' : 'block';
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
         document.getElementById('completedMessage').style.display = done ? 'block' : 'none';
 
