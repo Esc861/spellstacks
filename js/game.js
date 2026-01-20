@@ -112,14 +112,12 @@
         const valid = word.length >= 2 && Dictionary.isValidWord(word);
 
         builder.innerHTML = current.map(i =>
-            `<span class="letter" data-i="${i}">${letters[i]}</span>`
-        ).join('');
+            `<span class="letter">${letters[i]}</span>`
+        ).join('') + '<button class="delete-btn" id="deleteBtn">&larr;</button>';
 
         builder.className = 'builder' + (word.length >= 2 ? (valid ? ' valid' : ' invalid') : '');
 
-        builder.querySelectorAll('.letter').forEach(span => {
-            span.addEventListener('click', () => toggleTile(parseInt(span.dataset.i)));
-        });
+        document.getElementById('deleteBtn').addEventListener('click', deleteLetter);
     }
 
     function renderWords() {
@@ -149,10 +147,15 @@
     }
 
     function toggleTile(i) {
-        if (done || used.has(i)) return;
-        const idx = current.indexOf(i);
-        if (idx >= 0) current.splice(idx, 1);
-        else current.push(i);
+        if (done || used.has(i) || current.includes(i)) return;
+        current.push(i);
+        renderRack();
+        renderBuilder();
+    }
+
+    function deleteLetter() {
+        if (current.length === 0) return;
+        current.pop();
         renderRack();
         renderBuilder();
     }
