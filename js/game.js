@@ -83,6 +83,29 @@
             });
         });
 
+        // Keyboard support
+        document.addEventListener('keydown', e => {
+            if (done) return;
+            if (document.querySelector('.modal.show')) return;
+
+            if (e.key === 'Backspace') {
+                e.preventDefault();
+                deleteLetter();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                addWord();
+            } else if (/^[a-zA-Z]$/.test(e.key)) {
+                const letter = e.key.toUpperCase();
+                // Find first available tile with this letter
+                const idx = letters.findIndex((l, i) =>
+                    l === letter && !used.has(i) && !current.includes(i)
+                );
+                if (idx !== -1) {
+                    toggleTile(idx);
+                }
+            }
+        });
+
         if (done) showComplete();
     }
 
