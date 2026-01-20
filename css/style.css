@@ -259,6 +259,8 @@ header {
 }
 
 .tile:active:not(:disabled) { transform: scale(0.95); }
+.tile:focus { outline: none; }
+.tile:disabled { background: var(--tile-bg); border-color: var(--tile-border); color: var(--text); }
 .tile.used { opacity: 0.25; }
 
 /* Buttons */
