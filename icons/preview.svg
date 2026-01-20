@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90d9"/>
+      <stop offset="100%" style="stop-color:#3a7bc8"/>
+    </linearGradient>
+    <linearGradient id="tile" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f5f5f5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Logo tiles - SPELLSTACKS -->
+  <g transform="translate(600, 240)">
+    <!-- S -->
+    <g transform="translate(-275, 0) rotate(-2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#tile)" stroke="#ddd" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#4a90d9" text-anchor="middle">S</text>
+    </g>
+    <!-- P -->
+    <g transform="translate(-220, 0) rotate(2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#tile)" stroke="#ddd" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#4a90d9" text-anchor="middle">P</text>
+    </g>
+    <!-- E -->
+    <g transform="translate(-165, 0) rotate(-2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#tile)" stroke="#ddd" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#4a90d9" text-anchor="middle">E</text>
+    </g>
+    <!-- L -->
+    <g transform="translate(-110, 0) rotate(2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#tile)" stroke="#ddd" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#4a90d9" text-anchor="middle">L</text>
+    </g>
+    <!-- L -->
+    <g transform="translate(-55, 0) rotate(-2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#tile)" stroke="#ddd" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#4a90d9" text-anchor="middle">L</text>
+    </g>
+    <!-- S (alt) -->
+    <g transform="translate(0, 0) rotate(2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#bg)" stroke="#3a7bc8" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">S</text>
+    </g>
+    <!-- T (alt) -->
+    <g transform="translate(55, 0) rotate(-2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#bg)" stroke="#3a7bc8" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">T</text>
+    </g>
+    <!-- A (alt) -->
+    <g transform="translate(110, 0) rotate(2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#bg)" stroke="#3a7bc8" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">A</text>
+    </g>
+    <!-- C (alt) -->
+    <g transform="translate(165, 0) rotate(-2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#bg)" stroke="#3a7bc8" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">C</text>
+    </g>
+    <!-- K (alt) -->
+    <g transform="translate(220, 0) rotate(2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#bg)" stroke="#3a7bc8" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">K</text>
+    </g>
+    <!-- S (alt) -->
+    <g transform="translate(275, 0) rotate(-2)">
+      <rect x="-28" y="-34" width="56" height="68" rx="8" fill="url(#bg)" stroke="#3a7bc8" stroke-width="2"/>
+      <text x="0" y="14" font-family="-apple-system, system-ui, sans-serif" font-size="40" font-weight="bold" fill="#fff" text-anchor="middle">S</text>
+    </g>
+  </g>
+
+  <!-- Tagline -->
+  <text x="600" y="380" font-family="-apple-system, system-ui, sans-serif" font-size="32" fill="#fff" text-anchor="middle" opacity="0.95">A daily word puzzle</text>
+  <text x="600" y="430" font-family="-apple-system, system-ui, sans-serif" font-size="24" fill="#fff" text-anchor="middle" opacity="0.8">Use all 18 letters in as few words as you can!</text>
+</svg>
