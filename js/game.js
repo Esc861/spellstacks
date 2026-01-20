@@ -81,9 +81,8 @@
     function renderRack() {
         const rack = document.getElementById('rack');
         rack.innerHTML = letters.map((l, i) => {
-            const isUsed = used.has(i);
-            const isSel = current.includes(i);
-            const cls = isUsed ? 'tile used' : isSel ? 'tile sel' : 'tile';
+            const isUsed = used.has(i) || current.includes(i);
+            const cls = isUsed ? 'tile used' : 'tile';
             return `<button class="${cls}" data-i="${i}" ${isUsed || done ? 'disabled' : ''}>${l}</button>`;
         }).join('');
 
