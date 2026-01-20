@@ -1,5 +1,5 @@
 // Spellstacks Service Worker
-const CACHE = 'spellstacks-v15';
+const CACHE = 'spellstacks-v16';
 const ASSETS = [
     '/',
     '/index.html',
@@ -30,6 +30,13 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
     e.respondWith(
-        caches.match(e.request).then(r => r || fetch(e.request))
+        fetch(e.request)
+            .then(response => {
+                // Update cache with fresh response
+                const clone = response.clone();
+                caches.open(CACHE).then(cache => cache.put(e.request, clone));
+                return response;
+            })
+            .catch(() => caches.match(e.request))
     );
 });
