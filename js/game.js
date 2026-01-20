@@ -166,14 +166,21 @@
         document.getElementById('deleteBtn').addEventListener('click', deleteLetter);
     }
 
+    let lastWordCount = 0;
+
     function renderWords() {
         const container = document.getElementById('words');
         if (words.length === 0) {
             container.innerHTML = '';
+            lastWordCount = 0;
             return;
         }
+
+        const isNewWord = words.length > lastWordCount;
+        lastWordCount = words.length;
+
         container.innerHTML = words.map((w, i) =>
-            `<div class="word">${w.word}${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
+            `<div class="word${isNewWord && i === 0 ? ' new' : ''}">${w.word}${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
         ).join('');
 
         container.querySelectorAll('button').forEach(btn => {
