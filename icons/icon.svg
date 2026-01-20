@@ -13,16 +13,9 @@
   <!-- Background -->
   <rect width="512" height="512" rx="96" fill="url(#bg)"/>
 
-  <!-- Stacked tiles -->
-  <!-- Bottom tile -->
-  <g transform="translate(256, 310) rotate(6)">
-    <rect x="-80" y="-80" width="160" height="160" rx="16" fill="url(#tile)" stroke="#ddd" stroke-width="4"/>
-    <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="100" font-weight="bold" fill="#4a90d9" text-anchor="middle">S</text>
-  </g>
-
-  <!-- Top tile -->
-  <g transform="translate(256, 200) rotate(-4)">
-    <rect x="-80" y="-80" width="160" height="160" rx="16" fill="url(#tile)" stroke="#ddd" stroke-width="4"/>
-    <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="100" font-weight="bold" fill="#4a90d9" text-anchor="middle">S</text>
+  <!-- Single tile with S -->
+  <g transform="translate(256, 256) rotate(-5)">
+    <rect x="-140" y="-140" width="280" height="280" rx="28" fill="url(#tile)" stroke="#ddd" stroke-width="6"/>
+    <text x="0" y="50" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="180" font-weight="bold" fill="#4a90d9" text-anchor="middle">S</text>
   </g>
 </svg>
