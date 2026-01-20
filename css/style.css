@@ -54,7 +54,7 @@ body {
 /* Header */
 header {
     text-align: center;
-    padding: 4px 0 8px;
+    padding: 4px 0;
     position: relative;
     flex-shrink: 0;
 }
@@ -92,16 +92,11 @@ header {
 }
 
 .date {
-    font-size: 13px;
-    color: var(--muted);
+    display: none;
 }
 
 .objective {
-    text-align: center;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 8px;
-    flex-shrink: 0;
+    display: none;
 }
 
 .icon-btn {
@@ -126,7 +121,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     flex: 1;
     min-height: 0;
     overflow-y: auto;
@@ -173,12 +168,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    height: 48px;
-    padding: 0 48px 0 12px;
+    gap: 4px;
+    height: 44px;
+    padding: 0 44px 0 10px;
     background: var(--card);
-    border-radius: 10px;
-    margin-bottom: 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     transition: background 0.15s;
     position: relative;
@@ -190,13 +185,13 @@ header {
 
 .delete-btn {
     position: absolute;
-    right: 8px;
+    right: 6px;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     background: var(--tile-border);
     color: var(--text);
     cursor: pointer;
@@ -206,8 +201,8 @@ header {
 }
 
 .delete-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
 }
 
 .delete-btn:active { transform: translateY(-50%) scale(0.95); }
@@ -224,13 +219,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     background: var(--tile-bg);
     border: 2px solid var(--tile-border);
-    border-radius: 8px;
+    border-radius: 6px;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     color: var(--text);
 }
 
@@ -240,10 +235,10 @@ header {
 /* Score */
 .score {
     text-align: center;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--accent);
-    padding: 4px 0 8px;
+    padding: 2px 0 4px;
     flex-shrink: 0;
 }
 
@@ -266,24 +261,24 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px;
-    padding: 10px;
+    gap: 4px;
+    padding: 8px;
     background: var(--card);
     border-radius: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     flex-shrink: 0;
 }
 
 .tile {
-    width: 40px;
-    height: 46px;
+    width: 36px;
+    height: 42px;
     border: 2px solid var(--tile-border);
     border-radius: 6px;
     background: var(--tile-bg);
     color: var(--text);
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     position: relative;
     transition: transform 0.1s, border-color 0.1s;
@@ -297,17 +292,17 @@ header {
 /* Buttons */
 .actions {
     display: flex;
-    gap: 10px;
-    margin-bottom: 8px;
+    gap: 8px;
+    margin-bottom: 6px;
     flex-shrink: 0;
 }
 
 .btn {
     flex: 1;
-    padding: 12px;
+    padding: 10px;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     background: var(--tile-border);
@@ -321,13 +316,13 @@ header {
 .reset-btn {
     display: none;
     width: 100%;
-    padding: 12px;
-    margin-top: 12px;
+    padding: 10px;
+    margin-top: 8px;
     border: 1px solid var(--tile-border);
-    border-radius: 10px;
+    border-radius: 8px;
     background: transparent;
     color: var(--muted);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     flex-shrink: 0;
