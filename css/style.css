@@ -278,14 +278,17 @@ header {
 .reset-btn {
     display: none;
     width: 100%;
+    padding: 14px;
+    border: 1px solid var(--tile-border);
+    border-radius: 10px;
     background: transparent;
-    border: none;
     color: var(--muted);
-    font-size: 13px;
-    padding: 8px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    text-decoration: underline;
 }
+
+.reset-btn:active { transform: scale(0.98); }
 
 .completed-message {
     display: none;
