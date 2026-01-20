@@ -217,7 +217,7 @@
 
         let summary = `word${words.length !== 1 ? 's' : ''} to use all 18 letters`;
         if (stats.fewest !== null && words.length <= stats.fewest) {
-            summary = `Your best! ${summary}`;
+            summary += ` — your best!`;
         }
         document.getElementById('summary').textContent = summary;
         document.getElementById('completeModal').classList.add('show');
