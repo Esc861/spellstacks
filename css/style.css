@@ -313,14 +313,13 @@ header {
 /* Buttons */
 .actions {
     display: flex;
+    flex-direction: column;
     gap: 8px;
-    margin-bottom: 6px;
     flex-shrink: 0;
 }
 
 .btn {
-    flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 8px;
     font-size: 15px;
@@ -335,7 +334,6 @@ header {
 .btn.primary { background: var(--accent); color: #fff; }
 
 .reset-btn {
-    display: none;
     padding: 10px;
     border: 1px solid var(--tile-border);
     border-radius: 8px;
@@ -471,14 +469,15 @@ header {
 @media (orientation: landscape) and (max-height: 500px) {
     .app {
         max-width: 100%;
-        padding: 8px 16px;
+        padding: 8px 12px;
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        grid-template-rows: auto 1fr;
+        grid-template-columns: 1fr 1.3fr;
+        grid-template-rows: auto 1fr auto;
         grid-template-areas:
             "header controls"
-            "words controls";
-        gap: 8px;
+            "words controls"
+            "actions controls";
+        gap: 6px;
         height: 100dvh;
     }
 
@@ -537,41 +536,40 @@ header {
     .hint { font-size: 12px; }
 
     .score {
-        font-size: 14px;
-        padding: 0;
+        font-size: 16px;
+        padding: 2px 0;
     }
 
-    .score .complete { font-size: 12px; }
+    .score .complete { font-size: 14px; }
 
     .rack {
         padding: 4px;
-        gap: 2px;
+        gap: 3px;
         margin: 0;
     }
 
     .tile {
-        font-size: 12px;
+        font-size: 13px;
         border-radius: 4px;
-        aspect-ratio: 1 / 1;
     }
 
     .actions {
-        margin: 0;
-        gap: 6px;
+        grid-area: actions;
         flex-direction: row;
+        gap: 8px;
+        margin: 0;
     }
 
     .btn {
-        padding: 6px;
-        font-size: 12px;
+        flex: 1;
+        padding: 8px;
+        font-size: 13px;
     }
 
     .reset-btn {
-        display: block;
-        margin: 0;
-        padding: 6px;
-        font-size: 12px;
         flex: 1;
+        padding: 8px;
+        font-size: 13px;
     }
 
     .completed-message { display: none; }
@@ -584,11 +582,12 @@ header {
         padding: 20px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto 1fr;
+        grid-template-rows: auto auto 1fr auto;
         grid-template-areas:
             "header header"
             "objective objective"
-            "words controls";
+            "words controls"
+            "words actions";
         gap: 16px;
     }
 
@@ -604,7 +603,12 @@ header {
         gap: 12px;
     }
 
-    .builder, .score, .rack, .actions {
+    .actions {
+        grid-area: actions;
+        align-self: end;
+    }
+
+    .builder, .score, .rack {
         margin: 0;
         flex-shrink: 0;
     }
