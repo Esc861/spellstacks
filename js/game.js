@@ -192,7 +192,7 @@
         const scoreEl = document.getElementById('score');
 
         if (used.size === 18) {
-            scoreEl.innerHTML = `<span class="complete">All letters used!</span>`;
+            scoreEl.innerHTML = `<span class="complete">All letters used</span>`;
         } else {
             scoreEl.textContent = `${used.size}/18`;
         }
@@ -296,7 +296,7 @@
     function share() {
         const d = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         let text = `Spellstacks ${d}`;
-        text += `\nI used all 18 letters in ${words.length} word${words.length !== 1 ? 's' : ''}!`;
+        text += `\nI used all 18 letters in ${words.length} word${words.length !== 1 ? 's' : ''}.`;
         text += `\n\nCan you do better? Join me!\nhttps://spellstacks.com`;
 
         if (navigator.share) {
@@ -309,7 +309,7 @@
     function copy(text) {
         navigator.clipboard.writeText(text).then(() => {
             const btn = document.getElementById('shareBtn');
-            btn.textContent = 'Copied!';
+            btn.textContent = 'Copied';
             setTimeout(() => btn.textContent = 'Share', 1500);
         });
     }
