@@ -470,8 +470,8 @@ header {
     }
 }
 
-/* Desktop layout */
-@media (min-width: 700px) {
+/* Desktop layout - require both width and height to avoid landscape phones */
+@media (min-width: 700px) and (min-height: 500px) {
     .app {
         max-width: 680px;
         padding: 20px;
