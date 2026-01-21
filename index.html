@@ -7,6 +7,8 @@
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="description" content="A daily word puzzle. Use all 18 letters in as few words as you can.">
+    <meta name="keywords" content="word game, daily puzzle, word puzzle, spelling game, free word game, Wordle alternative">
+    <link rel="canonical" href="https://spellstacks.com/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Spellstacks">
@@ -21,20 +23,39 @@
     <meta name="twitter:description" content="A daily word puzzle. Use all 18 letters in as few words as you can.">
     <meta name="twitter:image" content="https://spellstacks.com/preview.png">
 
-    <title>Spellstacks</title>
+    <title>Spellstacks - Daily Word Puzzle Game</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Spellstacks",
+        "description": "A daily word puzzle game. Use all 18 letters in as few words as you can.",
+        "url": "https://spellstacks.com",
+        "applicationCategory": "Game",
+        "genre": "Word Game",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
 </head>
 <body>
-    <div class="app">
+    <main class="app" role="main">
         <header>
             <h1 class="logo">
                 <span class="logo-letter">S</span><span class="logo-letter">P</span><span class="logo-letter">E</span><span class="logo-letter">L</span><span class="logo-letter">L</span><span class="logo-letter alt">S</span><span class="logo-letter alt">T</span><span class="logo-letter alt">A</span><span class="logo-letter alt">C</span><span class="logo-letter alt">K</span><span class="logo-letter alt">S</span>
             </h1>
             <span class="date" id="date"></span>
-            <button class="icon-btn stats-btn" id="statsBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <button class="icon-btn stats-btn" id="statsBtn" aria-label="View statistics">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path d="M18 20V10M12 20V4M6 20v-6"/>
                 </svg>
             </button>
@@ -63,7 +84,7 @@
             <p>Nice work. Come back tomorrow for a new puzzle.</p>
             <p class="countdown">Next puzzle in <span id="countdown">--</span></p>
         </div>
-    </div>
+    </main>
 
     <!-- Stats Modal -->
     <div class="modal" id="statsModal">
