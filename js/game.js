@@ -214,7 +214,7 @@
     }
 
     function addWord() {
-        if (current.length < 2) return shake();
+        if (current.length < 1) return shake();
 
         const word = current.map(i => letters[i]).join('');
 

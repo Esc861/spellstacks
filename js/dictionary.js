@@ -21,7 +21,7 @@ const Dictionary = (function() {
             .then(text => {
                 const words = text.split('\n')
                     .map(word => word.trim().toUpperCase())
-                    .filter(word => word.length >= 2 && word.length <= 18);
+                    .filter(word => word.length >= 1 && word.length <= 18);
 
                 wordSet = new Set(words);
                 isLoaded = true;
