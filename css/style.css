@@ -470,6 +470,107 @@ header {
     }
 }
 
+/* Landscape phone layout */
+@media (orientation: landscape) and (max-height: 500px) {
+    .app {
+        max-width: 100%;
+        padding: 8px 16px;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "header controls"
+            "words controls";
+        gap: 8px;
+        height: 100dvh;
+    }
+
+    header {
+        grid-area: header;
+        padding: 0;
+        text-align: left;
+    }
+
+    .logo { justify-content: flex-start; padding: 0; gap: 1px; }
+    .logo-letter { width: 16px; height: 18px; font-size: 10px; border-width: 1px; }
+
+    .date { display: none; }
+    .objective { display: none; }
+    .stats-btn { top: 0; right: auto; left: 200px; }
+
+    .words {
+        grid-area: words;
+        margin: 0;
+        padding: 6px;
+        gap: 3px;
+    }
+
+    .word {
+        padding: 4px 8px;
+        font-size: 13px;
+    }
+
+    .word button { width: 20px; height: 20px; font-size: 14px; }
+
+    .controls {
+        grid-area: controls;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .builder {
+        height: 36px;
+        margin: 0;
+        padding: 0 36px 0 8px;
+    }
+
+    .builder .letter {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+    }
+
+    .delete-btn {
+        width: 28px;
+        height: 28px;
+        right: 4px;
+    }
+
+    .hint { font-size: 13px; }
+
+    .score {
+        font-size: 18px;
+        padding: 0;
+    }
+
+    .score .complete { font-size: 16px; }
+
+    .rack {
+        padding: 6px;
+        gap: 3px;
+        margin: 0;
+    }
+
+    .tile {
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    .actions {
+        margin: 0;
+        gap: 6px;
+    }
+
+    .btn {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .reset-btn { display: none; }
+    .completed-message { display: none; }
+}
+
 /* Desktop layout - require both width and height to avoid landscape phones */
 @media (min-width: 700px) and (min-height: 500px) {
     .app {
