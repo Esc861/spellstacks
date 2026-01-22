@@ -289,7 +289,7 @@
 
     function share() {
         let text = `I completed today's Spellstacks puzzle in only ${words.length} word${words.length !== 1 ? 's' : ''}!`;
-        text += `\n\nCan you do better? Come join me at spellstacks.com`;
+        text += `\n\nCan you do better? Come join me at https://spellstacks.com`;
 
         if (navigator.share) {
             navigator.share({ text }).catch(() => copy(text));
