@@ -412,15 +412,24 @@ header {
     color: var(--accent);
 }
 
+.score-intro {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
 .final-score {
     font-size: 56px;
     font-weight: 700;
     color: var(--accent);
+    line-height: 1;
 }
 
-.modal-content p {
+#summary {
     color: var(--muted);
-    margin-bottom: 20px;
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 16px;
 }
 
 .modal-content .btn { margin-top: 8px; }
@@ -433,7 +442,7 @@ header {
 
 .modal-footer p {
     font-size: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
 .coffee-btn {

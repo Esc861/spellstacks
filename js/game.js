@@ -269,9 +269,9 @@
     function showComplete() {
         document.getElementById('finalScore').textContent = words.length;
 
-        let summary = `word${words.length !== 1 ? 's' : ''} to use all 18 letters`;
+        let summary = `word${words.length !== 1 ? 's' : ''}`;
         if (stats.fewest !== null && words.length <= stats.fewest) {
-            summary += ` — your best!`;
+            summary += ` — a new best!`;
         }
         document.getElementById('summary').textContent = summary;
         document.getElementById('completeModal').classList.add('show');
