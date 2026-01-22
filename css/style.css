@@ -690,4 +690,8 @@ header {
     .btn {
         padding: 12px;
     }
+
+    .site-footer {
+        bottom: 16px;
+    }
 }
