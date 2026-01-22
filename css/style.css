@@ -374,6 +374,25 @@ header {
     width: 100%;
     max-width: 300px;
     text-align: center;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--text);
 }
 
 .modal-content h2 { margin-bottom: 8px; }
@@ -405,6 +424,28 @@ header {
 }
 
 .modal-content .btn { margin-top: 8px; }
+
+.modal-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--tile-border);
+}
+
+.modal-footer p {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.coffee-btn {
+    background: #ffdd00;
+    color: #000;
+    font-size: 13px;
+    padding: 10px 16px;
+}
+
+.coffee-btn:hover {
+    background: #e5c700;
+}
 
 /* Animations */
 @keyframes shake {
