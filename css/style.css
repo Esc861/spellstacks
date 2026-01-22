@@ -525,45 +525,50 @@ header {
         grid-area: controls;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 2px;
+        min-height: 0;
+        overflow-y: auto;
     }
 
     .builder {
-        height: 32px;
+        height: 28px;
         margin: 0;
-        padding: 0 32px 0 6px;
+        padding: 0 28px 0 4px;
+        flex-shrink: 0;
     }
 
     .builder .letter {
-        width: 22px;
-        height: 22px;
-        font-size: 12px;
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
     }
 
     .delete-btn {
-        width: 24px;
-        height: 24px;
-        right: 4px;
+        width: 22px;
+        height: 22px;
+        right: 3px;
     }
 
-    .hint { font-size: 12px; }
+    .hint { font-size: 11px; }
 
     .score {
-        font-size: 16px;
-        padding: 2px 0;
+        font-size: 14px;
+        padding: 0;
+        flex-shrink: 0;
     }
 
-    .score .complete { font-size: 14px; }
+    .score .complete { font-size: 12px; }
 
     .rack {
-        padding: 4px;
-        gap: 3px;
+        padding: 3px;
+        gap: 2px;
         margin: 0;
+        flex-shrink: 0;
     }
 
     .tile {
-        font-size: 13px;
-        border-radius: 4px;
+        font-size: 11px;
+        border-radius: 3px;
     }
 
     .actions {
