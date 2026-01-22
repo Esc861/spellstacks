@@ -53,24 +53,22 @@ body {
 
 /* Header */
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    text-align: center;
     padding: 4px 0;
     flex-shrink: 0;
-    gap: 8px;
-}
-
-.header-center {
-    text-align: center;
-    flex: 1;
-    min-width: 0;
+    position: relative;
 }
 
 .logo {
     display: flex;
     justify-content: center;
     gap: 2px;
+}
+
+.icon-btn {
+    position: absolute;
+    right: 0;
+    top: 4px;
 }
 
 .logo-letter {
@@ -122,7 +120,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
 }
 
 .controls {
@@ -261,25 +258,13 @@ header {
 
 /* Score */
 .score {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--accent);
-    padding: 2px 0 4px;
-    flex-shrink: 0;
-}
-
-.score .remaining {
-    display: block;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     color: var(--muted);
+    padding: 0 12px;
 }
 
-.score .complete {
-    display: block;
-    font-size: 24px;
-    font-weight: 600;
+.score.complete {
     color: var(--green);
 }
 
@@ -317,12 +302,13 @@ header {
 /* Buttons */
 .actions {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 8px;
     flex-shrink: 0;
 }
 
 .btn {
+    flex: 1;
     padding: 12px;
     border: none;
     border-radius: 8px;
@@ -470,12 +456,13 @@ header {
 }
 
 .site-footer a {
-    color: var(--muted);
-    text-decoration: underline;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.site-footer:hover {
-    opacity: 0.8;
+.site-footer a:hover {
+    text-decoration: underline;
 }
 
 /* Landscape phone layout */
@@ -552,12 +539,9 @@ header {
     .hint { font-size: 11px; }
 
     .score {
-        font-size: 14px;
-        padding: 0;
-        flex-shrink: 0;
+        font-size: 12px;
+        padding: 0 8px;
     }
-
-    .score .complete { font-size: 12px; }
 
     .rack {
         padding: 3px;
@@ -635,8 +619,8 @@ header {
     .objective { font-size: 15px; }
 
     .score {
-        font-size: 32px;
-        padding: 8px 0;
+        font-size: 15px;
+        padding: 0 16px;
     }
 
     .builder {

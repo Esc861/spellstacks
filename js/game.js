@@ -58,7 +58,6 @@
 
         // Events
         document.getElementById('addBtn').addEventListener('click', addWord);
-        document.getElementById('resetBtn').addEventListener('click', resetGame);
 
         document.getElementById('statsBtn').addEventListener('click', () => {
             document.getElementById('statPlayed').textContent = stats.played;
@@ -116,7 +115,6 @@
         renderScore();
 
         // Show/hide buttons based on game state
-        document.getElementById('resetBtn').style.display = done ? 'none' : 'block';
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
         document.getElementById('completedMessage').style.display = done ? 'block' : 'none';
 
@@ -190,12 +188,8 @@
 
     function renderScore() {
         const scoreEl = document.getElementById('score');
-
-        if (used.size === 18) {
-            scoreEl.innerHTML = `<span class="complete">All letters used</span>`;
-        } else {
-            scoreEl.textContent = `${used.size}/18`;
-        }
+        scoreEl.textContent = `${used.size}/18`;
+        scoreEl.classList.toggle('complete', used.size === 18);
     }
 
     function toggleTile(i) {
