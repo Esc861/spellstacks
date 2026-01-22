@@ -44,4 +44,4 @@ Found a bug? [Report it here](https://github.com/Esc861/spellstacks/issues)
 
 ## License
 
-All rights reserved.
+GPL-3.0 - see [LICENSE](LICENSE) for details.
