@@ -482,15 +482,15 @@ header {
 @media (orientation: landscape) and (max-height: 500px) {
     .app {
         max-width: 100%;
-        padding: 8px 12px;
+        padding: 6px 12px;
         display: grid;
         grid-template-columns: 1fr 1.3fr;
         grid-template-rows: auto 1fr auto;
         grid-template-areas:
-            "header controls"
+            "header header"
             "words controls"
             "actions controls";
-        gap: 6px;
+        gap: 4px 8px;
         height: 100dvh;
     }
 
