@@ -53,17 +53,24 @@ body {
 
 /* Header */
 header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 4px 0;
-    position: relative;
     flex-shrink: 0;
+    gap: 8px;
+}
+
+.header-center {
+    text-align: center;
+    flex: 1;
+    min-width: 0;
 }
 
 .logo {
     display: flex;
     justify-content: center;
     gap: 2px;
-    padding: 0 36px;
 }
 
 .logo-letter {
@@ -106,10 +113,8 @@ header {
 }
 
 .icon-btn {
-    position: absolute;
-    top: 4px;
-    width: 28px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border: none;
     background: none;
     color: var(--muted);
@@ -117,9 +122,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
-
-.icon-btn.stats-btn { right: 0; }
 
 .controls {
     display: flex;
@@ -333,19 +337,6 @@ header {
 .btn:active { transform: scale(0.98); }
 .btn.primary { background: var(--accent); color: #fff; }
 
-.reset-btn {
-    padding: 10px;
-    border: 1px solid var(--tile-border);
-    border-radius: 8px;
-    background: transparent;
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.reset-btn:active { transform: scale(0.98); }
-
 .completed-message {
     display: none;
     text-align: center;
@@ -506,15 +497,15 @@ header {
     header {
         grid-area: header;
         padding: 0;
-        text-align: left;
     }
 
-    .logo { justify-content: flex-start; padding: 0; gap: 1px; }
-    .logo-letter { width: 16px; height: 18px; font-size: 10px; border-width: 1px; }
+    .logo { gap: 1px; }
+    .logo-letter { width: 14px; height: 16px; font-size: 9px; border-width: 1px; }
+    .icon-btn { width: 24px; height: 24px; }
+    .icon-btn svg { width: 14px; height: 14px; }
 
     .date { display: none; }
     .objective { display: none; }
-    .stats-btn { top: 0; right: auto; left: 200px; }
 
     .words {
         grid-area: words;
@@ -588,12 +579,6 @@ header {
         font-size: 13px;
     }
 
-    .reset-btn {
-        flex: 1;
-        padding: 8px;
-        font-size: 13px;
-    }
-
     .completed-message { display: none; }
     .site-footer { display: none; }
 }
@@ -662,11 +647,7 @@ header {
         padding: 10px 14px;
     }
 
-    .btn, .reset-btn {
+    .btn {
         padding: 12px;
-    }
-
-    .reset-btn {
-        display: block;
     }
 }
