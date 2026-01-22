@@ -6,8 +6,8 @@
     --text: #333;
     --muted: #888;
     --accent: #4a90d9;
-    --green: #00a67d;
-    --red: #e02c2c;
+    --valid: #2563eb;
+    --invalid: #ea580c;
     --tile-bg: linear-gradient(145deg, #fff, #f8f8f8);
     --tile-border: #ddd;
     --logo-tile-bg: linear-gradient(145deg, #fff, #f0f0f0);
@@ -20,8 +20,8 @@
         --text: #e8e8e8;
         --muted: #888;
         --accent: #5a9fe9;
-        --green: #00c896;
-        --red: #ff4444;
+        --valid: #3b82f6;
+        --invalid: #f97316;
         --tile-bg: linear-gradient(145deg, #3a3a3a, #2a2a2a);
         --tile-border: #444;
         --logo-tile-bg: linear-gradient(145deg, #3a3a3a, #2a2a2a);
@@ -253,8 +253,8 @@ header {
     color: var(--text);
 }
 
-.builder.valid .letter { border-color: var(--green); }
-.builder.invalid .letter { border-color: var(--red); }
+.builder.valid .letter { border-color: var(--valid); }
+.builder.invalid .letter { border-color: var(--invalid); }
 
 /* Score */
 .score {
@@ -265,7 +265,7 @@ header {
 }
 
 .score.complete {
-    color: var(--green);
+    color: var(--valid);
 }
 
 /* Letter rack */
