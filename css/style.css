@@ -465,6 +465,32 @@ header {
     }
 }
 
+/* Footer */
+.site-footer {
+    position: fixed;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.site-footer a {
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    opacity: 0.6;
+    pointer-events: auto;
+    padding: 4px 8px;
+    transition: opacity 0.2s;
+}
+
+.site-footer a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
 /* Landscape phone layout */
 @media (orientation: landscape) and (max-height: 500px) {
     .app {
@@ -573,6 +599,7 @@ header {
     }
 
     .completed-message { display: none; }
+    .site-footer { display: none; }
 }
 
 /* Desktop layout - require both width and height to avoid landscape phones */
