@@ -288,10 +288,8 @@
     }
 
     function share() {
-        const d = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-        let text = `Spellstacks ${d}`;
-        text += `\nI used all 18 letters in ${words.length} word${words.length !== 1 ? 's' : ''}.`;
-        text += `\n\nCan you do better? Join me!\nhttps://spellstacks.com`;
+        let text = `I completed today's Spellstacks puzzle in only ${words.length} word${words.length !== 1 ? 's' : ''}!`;
+        text += `\n\nCan you do better? Come join me at spellstacks.com`;
 
         if (navigator.share) {
             navigator.share({ text }).catch(() => copy(text));
