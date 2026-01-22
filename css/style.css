@@ -627,7 +627,7 @@ header {
 @media (min-width: 700px) and (min-height: 500px) {
     .app {
         max-width: 680px;
-        padding: 20px;
+        padding: 20px 20px 40px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto 1fr auto;
@@ -689,9 +689,5 @@ header {
 
     .btn {
         padding: 12px;
-    }
-
-    .site-footer {
-        bottom: 16px;
     }
 }
