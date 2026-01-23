@@ -601,7 +601,7 @@ header {
     }
 
     .tile {
-        font-size: 9px;
+        font-size: 11px;
         border-radius: 3px;
         border-width: 1px;
     }
@@ -615,7 +615,7 @@ header {
 
     .btn {
         flex: 1;
-        padding: 8px;
+        padding: 4px;
         font-size: 13px;
     }
 
