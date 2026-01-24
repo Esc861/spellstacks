@@ -538,8 +538,8 @@ header {
 
     .logo { gap: 1px; }
     .logo-letter { width: 14px; height: 16px; font-size: 9px; border-width: 1px; }
-    .icon-btn { width: 24px; height: 24px; }
-    .icon-btn svg { width: 14px; height: 14px; }
+
+    #statsBtn { display: none; }
 
     .date { display: none; }
     .objective { display: none; }
@@ -595,15 +595,16 @@ header {
 
     .rack {
         padding: 2px;
-        gap: 2px;
+        gap: 1px;
         margin: 0;
         flex-shrink: 0;
     }
 
     .tile {
-        font-size: 11px;
-        border-radius: 3px;
+        font-size: 12px;
+        border-radius: 2px;
         border-width: 1px;
+        aspect-ratio: 1 / 1;
     }
 
     .actions {
@@ -615,7 +616,7 @@ header {
 
     .btn {
         flex: 1;
-        padding: 4px;
+        padding: 10px 4px;
         font-size: 13px;
     }
 
