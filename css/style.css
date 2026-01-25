@@ -593,8 +593,7 @@ header {
         padding: 2px;
         gap: 2px;
         margin: 0;
-        flex: 1;
-        align-content: center;
+        flex-shrink: 0;
     }
 
     .tile {
