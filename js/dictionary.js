@@ -41,7 +41,7 @@ const Dictionary = (function() {
     // Fallback dictionary with common words
     function loadFallbackDictionary() {
         const commonWords = [
-            'A', 'I', 'AM', 'AN', 'AS', 'AT', 'BE', 'BY', 'DO', 'GO', 'HE', 'IF', 'IN', 'IS', 'IT', 'ME', 'MY', 'NO', 'OF', 'ON', 'OR', 'SO', 'TO', 'UP', 'US', 'WE',
+            'A', 'I', 'O', 'AM', 'AN', 'AS', 'AT', 'BE', 'BY', 'DO', 'GO', 'HE', 'IF', 'IN', 'IS', 'IT', 'ME', 'MY', 'NO', 'OF', 'ON', 'OR', 'SO', 'TO', 'UP', 'US', 'WE',
             'ACE', 'ACT', 'ADD', 'AGE', 'AGO', 'AID', 'AIM', 'AIR', 'ALL', 'AND', 'ANT', 'ANY', 'APE', 'ARC', 'ARE', 'ARK', 'ARM', 'ART', 'ASK', 'ATE', 'AWE',
             'BAD', 'BAG', 'BAN', 'BAR', 'BAT', 'BED', 'BEE', 'BET', 'BIG', 'BIT', 'BOW', 'BOX', 'BOY', 'BUD', 'BUG', 'BUS', 'BUT', 'BUY',
             'CAB', 'CAN', 'CAP', 'CAR', 'CAT', 'COB', 'COD', 'COT', 'COW', 'CRY', 'CUB', 'CUD', 'CUP', 'CUT',
