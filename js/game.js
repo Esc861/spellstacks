@@ -146,7 +146,7 @@
         builder.style.display = 'flex';
 
         if (current.length === 0) {
-            builder.innerHTML = '<span class="hint">Tap letters below</span>';
+            builder.innerHTML = '<span class="hint">Select letters below</span>';
             builder.className = 'builder';
             return;
         }

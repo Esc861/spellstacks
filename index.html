@@ -70,11 +70,11 @@
                 <span class="hint">Select letters below</span>
             </div>
 
-            <div class="rack" id="rack"></div>
-        </div>
+            <div class="actions" id="actions">
+                <button class="btn primary" id="addBtn">Add Word</button>
+            </div>
 
-        <div class="actions" id="actions">
-            <button class="btn primary" id="addBtn">Add Word</button>
+            <div class="rack" id="rack"></div>
         </div>
 
         <div class="completed-message" id="completedMessage">
@@ -107,7 +107,7 @@
             <button class="btn primary" id="shareBtn">Share</button>
             <button class="btn" id="replayBtn">Play Again</button>
             <div class="modal-footer">
-                <p>Enjoying Spellstacks? This game is free forever, but you can support its development.</p>
+                <p>Enjoying Spellstacks? Support is totally optional, but always appreciated.</p>
                 <a href="https://buymeacoffee.com/esc861" target="_blank" rel="noopener" class="btn coffee-btn">Buy me a coffee</a>
             </div>
         </div>
@@ -121,12 +121,9 @@
     <script src="js/dictionary.js"></script>
     <script src="js/game.js"></script>
     <script>
-    // Unregister all service workers and clear caches
+    // Register service worker for offline support
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-            registrations.forEach(reg => reg.unregister());
-        });
-        caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+        navigator.serviceWorker.register('/sw.js');
     }
     </script>
 </body>

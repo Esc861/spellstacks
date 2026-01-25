@@ -293,6 +293,7 @@ header {
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
+    margin-bottom: 4px;
 }
 
 .btn {
@@ -510,11 +511,10 @@ header {
         padding: 6px 12px;
         display: grid;
         grid-template-columns: 1fr 1.3fr;
-        grid-template-rows: auto 1fr auto;
+        grid-template-rows: auto 1fr;
         grid-template-areas:
             "header header"
-            "words controls"
-            "actions controls";
+            "words controls";
         gap: 4px 8px;
         height: 100dvh;
     }
@@ -591,9 +591,6 @@ header {
     }
 
     .actions {
-        grid-area: actions;
-        flex-direction: row;
-        gap: 8px;
         margin: 0;
     }
 
@@ -614,12 +611,11 @@ header {
         padding: 20px 20px 40px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto 1fr auto;
+        grid-template-rows: auto auto 1fr;
         grid-template-areas:
             "header header"
             "objective objective"
-            "words controls"
-            "words actions";
+            "words controls";
         gap: 16px;
     }
 
@@ -636,8 +632,7 @@ header {
     }
 
     .actions {
-        grid-area: actions;
-        align-self: end;
+        margin: 0;
     }
 
     .builder, .rack {
