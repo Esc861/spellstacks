@@ -114,6 +114,7 @@
         renderWords();
 
         // Show/hide elements based on game state
+        document.getElementById('actions').style.display = done ? 'none' : 'flex';
         document.getElementById('completedMessage').style.display = done ? 'block' : 'none';
 
         if (done) {
@@ -137,15 +138,16 @@
     function renderBuilder() {
         const builder = document.getElementById('builder');
         const addBtn = document.getElementById('addBtn');
-
-        builder.style.display = 'flex';
-        addBtn.disabled = done || current.length === 0;
+        const builderGroup = document.querySelector('.builder-group');
 
         if (done) {
-            builder.innerHTML = '';
-            builder.className = 'builder';
+            builderGroup.style.display = 'none';
             return;
         }
+
+        builderGroup.style.display = 'block';
+        builder.style.display = 'flex';
+        addBtn.disabled = current.length === 0;
 
         if (current.length === 0) {
             builder.innerHTML = '<span class="hint">Select letters below</span>';
