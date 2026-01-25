@@ -533,8 +533,7 @@ header {
         padding: 0;
     }
 
-    .logo { gap: 1px; }
-    .logo-letter { width: 14px; height: 16px; font-size: 9px; border-width: 1px; }
+    .logo { display: none; }
 
     #statsBtn { display: none; }
 
@@ -594,14 +593,15 @@ header {
         padding: 2px;
         gap: 2px;
         margin: 0;
-        flex-shrink: 0;
+        flex: 1;
+        align-content: center;
     }
 
     .tile {
         font-size: 12px;
         border-radius: 2px;
         border-width: 1px;
-        aspect-ratio: 1 / 0.8;
+        aspect-ratio: 1 / 0.68;
     }
 
     .actions {
