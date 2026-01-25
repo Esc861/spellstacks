@@ -601,8 +601,7 @@ header {
         font-size: 12px;
         border-radius: 2px;
         border-width: 1px;
-        aspect-ratio: 1 / 0.7;
-        max-height: 28px;
+        aspect-ratio: 1 / 0.8;
     }
 
     .actions {
