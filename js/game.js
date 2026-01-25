@@ -115,7 +115,6 @@
 
         // Show/hide buttons based on game state
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
-        document.getElementById('addBtn').disabled = current.length === 0;
         document.getElementById('completedMessage').style.display = done ? 'block' : 'none';
 
         if (done) {
@@ -138,6 +137,7 @@
 
     function renderBuilder() {
         const builder = document.getElementById('builder');
+        const addBtn = document.getElementById('addBtn');
 
         if (done) {
             builder.style.display = 'none';
@@ -145,6 +145,7 @@
         }
 
         builder.style.display = 'flex';
+        addBtn.disabled = current.length === 0;
 
         if (current.length === 0) {
             builder.innerHTML = '<span class="hint">Select letters below</span>';
