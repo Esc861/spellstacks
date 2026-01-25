@@ -115,6 +115,7 @@
 
         // Show/hide buttons based on game state
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
+        document.getElementById('addBtn').disabled = current.length === 0;
         document.getElementById('completedMessage').style.display = done ? 'block' : 'none';
 
         if (done) {

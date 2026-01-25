@@ -309,8 +309,9 @@ header {
     transition: transform 0.1s;
 }
 
-.btn:active { transform: scale(0.98); }
+.btn:active:not(:disabled) { transform: scale(0.98); }
 .btn.primary { background: var(--accent); color: #fff; }
+.btn.primary:disabled { opacity: 0.4; cursor: default; }
 
 .completed-message {
     display: none;
