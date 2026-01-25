@@ -112,7 +112,6 @@
         renderRack();
         renderBuilder();
         renderWords();
-        renderScore();
 
         // Show/hide buttons based on game state
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
@@ -184,12 +183,6 @@
         container.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', () => removeWord(parseInt(btn.dataset.i)));
         });
-    }
-
-    function renderScore() {
-        const scoreEl = document.getElementById('score');
-        scoreEl.textContent = `${used.size}/18`;
-        scoreEl.classList.toggle('complete', used.size === 18);
     }
 
     function toggleTile(i) {

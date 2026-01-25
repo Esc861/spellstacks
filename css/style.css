@@ -256,18 +256,6 @@ header {
 .builder.valid .letter { border-color: var(--valid); }
 .builder.invalid .letter { border-color: var(--invalid); }
 
-/* Score */
-.score {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--muted);
-    padding: 0 12px;
-}
-
-.score.complete {
-    color: var(--valid);
-}
-
 /* Letter rack */
 .rack {
     display: grid;
@@ -588,11 +576,6 @@ header {
 
     .hint { font-size: 11px; }
 
-    .score {
-        font-size: 12px;
-        padding: 0 8px;
-    }
-
     .rack {
         padding: 2px;
         gap: 1px;
@@ -657,7 +640,7 @@ header {
         align-self: end;
     }
 
-    .builder, .score, .rack {
+    .builder, .rack {
         margin: 0;
         flex-shrink: 0;
     }
@@ -669,11 +652,6 @@ header {
     }
 
     .objective { font-size: 15px; }
-
-    .score {
-        font-size: 15px;
-        padding: 0 16px;
-    }
 
     .builder {
         height: 52px;
