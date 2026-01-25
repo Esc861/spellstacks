@@ -556,29 +556,29 @@ header {
     }
 
     .builder {
-        height: 28px;
+        height: 36px;
         margin: 0;
-        padding: 0 28px 0 4px;
+        padding: 0 32px 0 6px;
         flex-shrink: 0;
     }
 
     .builder .letter {
-        width: 18px;
-        height: 18px;
-        font-size: 10px;
+        width: 24px;
+        height: 24px;
+        font-size: 13px;
     }
 
     .delete-btn {
-        width: 22px;
-        height: 22px;
-        right: 3px;
+        width: 26px;
+        height: 26px;
+        right: 4px;
     }
 
-    .hint { font-size: 11px; }
+    .hint { font-size: 12px; }
 
     .rack {
         padding: 2px;
-        gap: 1px;
+        gap: 2px;
         margin: 0;
         flex-shrink: 0;
     }
@@ -587,7 +587,7 @@ header {
         font-size: 12px;
         border-radius: 2px;
         border-width: 1px;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 1 / 0.85;
     }
 
     .actions {
