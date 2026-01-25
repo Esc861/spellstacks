@@ -187,7 +187,16 @@ header {
     cursor: pointer;
 }
 
-/* Builder */
+/* Builder group */
+.builder-group {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+}
+
 .builder {
     display: flex;
     align-items: center;
@@ -196,8 +205,8 @@ header {
     height: 44px;
     padding: 0 44px 0 10px;
     background: rgba(74, 144, 217, 0.08);
-    border-radius: 8px;
-    margin-bottom: 4px;
+    border-radius: 6px;
+    margin-bottom: 8px;
     border: 1px dashed var(--tile-border);
     transition: background 0.15s, border-color 0.15s;
     position: relative;
@@ -293,7 +302,6 @@ header {
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
-    margin-bottom: 4px;
 }
 
 .btn {
@@ -556,9 +564,14 @@ header {
         overflow-y: auto;
     }
 
+    .builder-group {
+        padding: 4px;
+        margin-bottom: 2px;
+    }
+
     .builder {
         height: 36px;
-        margin: 0;
+        margin-bottom: 4px;
         padding: 0 32px 0 6px;
         flex-shrink: 0;
     }
@@ -636,9 +649,17 @@ header {
         margin: 0;
     }
 
+    .builder-group {
+        margin-bottom: 0;
+    }
+
     .builder, .rack {
-        margin: 0;
         flex-shrink: 0;
+    }
+
+    .builder {
+        height: 52px;
+        margin-bottom: 10px;
     }
 
     .logo-letter {
@@ -648,10 +669,6 @@ header {
     }
 
     .objective { font-size: 15px; }
-
-    .builder {
-        height: 52px;
-    }
 
     .tile {
         font-size: 18px;
