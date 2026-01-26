@@ -115,7 +115,8 @@
 
         // Show/hide elements based on game state
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
-        document.getElementById('completedMessage').style.display = done ? 'block' : 'none';
+        document.getElementById('rack').style.display = done ? 'none' : 'grid';
+        document.getElementById('completedMessage').style.display = done ? 'flex' : 'none';
 
         if (done) {
             updateCountdown();

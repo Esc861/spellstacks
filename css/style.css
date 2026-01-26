@@ -323,13 +323,15 @@ header {
 
 .completed-message {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     padding: 24px;
     background: var(--card);
     border-radius: 12px;
-    margin-top: 24px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    flex-shrink: 0;
+    flex: 1;
 }
 
 .completed-message p {
@@ -616,7 +618,7 @@ header {
         font-size: 13px;
     }
 
-    .completed-message { display: none; }
+    .completed-message { padding: 12px; }
     .site-footer { display: none; }
 }
 
@@ -638,7 +640,7 @@ header {
     header { grid-area: header; }
     .objective { grid-area: objective; margin: 0; }
     .words { grid-area: words; margin: 0; }
-    .completed-message { margin-top: 16px; }
+    .completed-message { margin-top: 0; }
 
     .controls {
         grid-area: controls;
