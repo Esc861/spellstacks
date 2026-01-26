@@ -100984,6 +100984,7 @@ nystagmus
 nystagmuses
 nystatin
 nystatins
+o
 oaf
 oafish
 oafishly
