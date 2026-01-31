@@ -70,9 +70,6 @@
         document.getElementById('closeStats').addEventListener('click', () => {
             document.getElementById('statsModal').classList.remove('show');
         });
-        document.getElementById('closeStatsX').addEventListener('click', () => {
-            document.getElementById('statsModal').classList.remove('show');
-        });
         document.getElementById('closeComplete').addEventListener('click', () => {
             document.getElementById('completeModal').classList.remove('show');
         });
