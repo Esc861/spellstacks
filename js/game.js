@@ -268,7 +268,7 @@
         document.getElementById('finalScore').textContent = words.length;
 
         let summary = `word${words.length !== 1 ? 's' : ''}`;
-        if (stats.fewest !== null && words.length <= stats.fewest) {
+        if (stats.fewest !== null && words.length < stats.fewest) {
             summary += ` — a new best!`;
         }
         document.getElementById('summary').textContent = summary;
