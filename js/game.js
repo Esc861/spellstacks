@@ -84,6 +84,12 @@
 
         // Keyboard support
         document.addEventListener('keydown', e => {
+            // Escape closes any open modal
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(m => m.classList.remove('show'));
+                return;
+            }
+
             if (done) return;
             if (document.querySelector('.modal.show')) return;
 
