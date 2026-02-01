@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Play - Spellstacks Daily Word Puzzle</title>
+    <meta name="description" content="Learn how to play Spellstacks, the daily word puzzle game. Use all 18 letters to make words in as few words as possible.">
+    <link rel="canonical" href="https://spellstacks.com/how-to-play.html">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        html, body {
+            height: auto;
+            overflow: auto;
+        }
+        .help-page {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px;
+            line-height: 1.7;
+        }
+        .help-page h1 {
+            margin-bottom: 8px;
+        }
+        .help-page .subtitle {
+            color: var(--muted);
+            margin-bottom: 32px;
+            font-size: 17px;
+        }
+        .help-page h2 {
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        .help-page p, .help-page li {
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+        .help-page ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .help-page a {
+            color: var(--accent);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 24px;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .example {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border: 1px solid var(--tile-border);
+        }
+        .example-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 8px;
+        }
+        .example-letters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .example-letter {
+            width: 32px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--tile-bg);
+            border: 2px solid var(--tile-border);
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .example-letter.used {
+            opacity: 0.25;
+        }
+        .example-words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .example-word {
+            background: var(--bg);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: 1px solid var(--tile-border);
+        }
+        .tip {
+            background: rgba(59, 125, 216, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .tip strong {
+            color: var(--accent);
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Play Spellstacks",
+        "description": "Learn how to play Spellstacks, the daily word puzzle game where you use all 18 letters in as few words as possible.",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "View the letters",
+                "text": "Each day you get 18 random letters arranged in a grid."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Make words",
+                "text": "Select letters to spell valid English words. Words must be at least 1 letter long."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Use all letters",
+                "text": "Keep making words until you've used all 18 letters."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Aim for fewer words",
+                "text": "The goal is to use all letters in as few words as possible. Longer words are better!"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <div class="help-page">
+        <a href="/" class="back-link">&larr; Back to game</a>
+
+        <h1>How to Play Spellstacks</h1>
+        <p class="subtitle">Use all the letters. Use as few words as you can.</p>
+
+        <h2>The Basics</h2>
+        <p>Every day, you get <strong>18 letters</strong>. Your goal is to use all of them by making valid English words. The catch? You want to use as <strong>few words as possible</strong>.</p>
+
+        <div class="example">
+            <div class="example-title">Example puzzle</div>
+            <div class="example-letters">
+                <span class="example-letter">S</span>
+                <span class="example-letter">P</span>
+                <span class="example-letter">E</span>
+                <span class="example-letter">L</span>
+                <span class="example-letter">L</span>
+                <span class="example-letter">I</span>
+                <span class="example-letter">N</span>
+                <span class="example-letter">G</span>
+                <span class="example-letter">W</span>
+                <span class="example-letter">O</span>
+                <span class="example-letter">R</span>
+                <span class="example-letter">D</span>
+                <span class="example-letter">S</span>
+                <span class="example-letter">A</span>
+                <span class="example-letter">R</span>
+                <span class="example-letter">E</span>
+                <span class="example-letter">F</span>
+                <span class="example-letter">U</span>
+            </div>
+            <div class="example-words">
+                <span class="example-word">SPELLINGS</span>
+                <span class="example-word">WONDERFUL</span>
+                <span class="example-word">ARE</span>
+            </div>
+        </div>
+
+        <h2>How to Make Words</h2>
+        <ul>
+            <li><strong>Select letters</strong> from the grid by tapping or clicking them. On desktop, you can also type letters directly.</li>
+            <li>Letters appear in the staging area at the top. The area turns <strong style="color: var(--valid)">blue</strong> when your word is valid, or <strong style="color: var(--invalid)">orange</strong> when it's not recognized.</li>
+            <li>Press <strong>Add Word</strong> (or Enter on desktop) to submit your word.</li>
+            <li>Made a mistake? Tap the delete button or press Backspace to remove letters. You can also remove entire words by tapping the × next to them.</li>
+        </ul>
+
+        <h2>Tips for Better Scores</h2>
+        <div class="tip">
+            <strong>Think big.</strong> Longer words use more letters, meaning fewer total words. A 9-letter word is worth three 3-letter words!
+        </div>
+
+        <ul>
+            <li><strong>Look for common endings</strong> like -ING, -TION, -NESS, -ABLE, or -LY that can extend words.</li>
+            <li><strong>Spot prefixes</strong> like UN-, RE-, PRE-, or DIS- that might combine with other letters.</li>
+            <li><strong>Save tricky letters</strong> like Q, X, Z, or J for last — sometimes a simple word like "AX" is all you need.</li>
+            <li><strong>Don't forget single letters!</strong> A, I, and O are valid one-letter words that can help you finish.</li>
+        </ul>
+
+        <h2>Scoring</h2>
+        <p>Your score is simply the <strong>number of words</strong> you used. Lower is better! The game tracks your best (fewest) score and your current streak of days played.</p>
+
+        <h2>Keyboard Shortcuts</h2>
+        <p>On desktop, you can use your keyboard for faster play:</p>
+        <ul>
+            <li><strong>A-Z</strong> — Type letters directly</li>
+            <li><strong>Enter</strong> — Add word</li>
+            <li><strong>Backspace</strong> — Delete last letter</li>
+            <li><strong>Escape</strong> — Close popups</li>
+        </ul>
+
+        <h2>Daily Reset</h2>
+        <p>A new puzzle is available every day at midnight (your local time). Come back daily to keep your streak going!</p>
+
+        <p style="margin-top: 40px; text-align: center;">
+            <a href="/" class="back-link">Play Spellstacks &rarr;</a>
+        </p>
+    </div>
+</body>
+</html>

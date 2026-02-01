@@ -13,6 +13,15 @@
         if (navigator.vibrate) navigator.vibrate(pattern);
     }
 
+    // Announce to screen readers
+    function announce(message) {
+        const el = document.getElementById('srAnnounce');
+        if (el) {
+            el.textContent = '';
+            setTimeout(() => { el.textContent = message; }, 100);
+        }
+    }
+
     function confetti() {
         const container = document.createElement('div');
         container.className = 'confetti-container';
@@ -216,13 +225,20 @@
 
         const word = current.map(i => letters[i]).join('');
 
-        if (!Dictionary.isValidWord(word)) return shake();
-        if (words.some(w => w.word === word)) return shake();
+        if (!Dictionary.isValidWord(word)) {
+            announce(`${word} is not a valid word`);
+            return shake();
+        }
+        if (words.some(w => w.word === word)) {
+            announce(`${word} already used`);
+            return shake();
+        }
 
         words.unshift({ word, indices: [...current] });
         current.forEach(i => used.add(i));
         current = [];
         haptic(20);
+        announce(`${word} added. ${18 - used.size} letters remaining.`);
 
         // Auto-finish if all 18 letters are used
         if (used.size === 18) {
@@ -235,8 +251,10 @@
 
     function removeWord(idx) {
         if (done) return;
+        const word = words[idx].word;
         words[idx].indices.forEach(i => used.delete(i));
         words.splice(idx, 1);
+        announce(`${word} removed`);
         render();
         save();
     }
@@ -268,6 +286,7 @@
         confetti();
         showComplete();
         render();
+        announce(`Puzzle complete! You used all letters in ${words.length} words.`);
     }
 
     function showComplete() {
