@@ -208,7 +208,7 @@
         container.querySelectorAll('.word').forEach(el => {
             el.addEventListener('dblclick', () => {
                 const word = el.dataset.word.toLowerCase();
-                window.open(`https://en.wiktionary.org/wiki/${word}`, '_blank', 'noopener');
+                window.open(`https://en.wiktionary.org/wiki/${word}#English`, '_blank', 'noopener');
             });
         });
     }
