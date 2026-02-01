@@ -197,11 +197,19 @@
         lastWordCount = words.length;
 
         container.innerHTML = words.map((w, i) =>
-            `<div class="word${isNewWord && i === 0 ? ' new' : ''}">${w.word}${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
+            `<div class="word${isNewWord && i === 0 ? ' new' : ''}" data-word="${w.word}"><span class="word-text">${w.word}</span>${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
         ).join('');
 
         container.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', () => removeWord(parseInt(btn.dataset.i)));
+        });
+
+        // Double-click/tap to open Wiktionary definition
+        container.querySelectorAll('.word').forEach(el => {
+            el.addEventListener('dblclick', () => {
+                const word = el.dataset.word.toLowerCase();
+                window.open(`https://en.wiktionary.org/wiki/${word}`, '_blank', 'noopener');
+            });
         });
     }
 
