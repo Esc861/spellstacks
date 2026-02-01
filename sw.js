@@ -1,5 +1,5 @@
 // Spellstacks Service Worker
-const CACHE = 'spellstacks-v1';
+const CACHE = 'spellstacks-v2';
 const ASSETS = [
     '/',
     '/index.html',
@@ -9,7 +9,9 @@ const ASSETS = [
     '/js/game.js',
     '/data/words.txt',
     '/manifest.json',
-    '/icons/icon.svg'
+    '/logo.png',
+    '/logo.webp',
+    '/icons/icon-192.png'
 ];
 
 self.addEventListener('install', e => {
