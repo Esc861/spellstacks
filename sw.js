@@ -1,5 +1,5 @@
 // Spellstacks Service Worker
-const CACHE = 'spellstacks-v3';
+const CACHE = 'spellstacks-v4';
 const ASSETS = [
     '/',
     '/index.html',
@@ -11,8 +11,12 @@ const ASSETS = [
     '/manifest.json',
     '/logo-sm.png',
     '/logo-sm.webp',
+    '/logo-sm@2x.png',
+    '/logo-sm@2x.webp',
     '/logo-md.png',
     '/logo-md.webp',
+    '/logo-md@2x.png',
+    '/logo-md@2x.webp',
     '/icons/icon-192.png'
 ];
 
