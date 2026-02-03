@@ -75,11 +75,12 @@ header {
 .logo {
     display: flex;
     justify-content: center;
+    height: 44px;
 }
 
 .logo-img {
     height: 44px;
-    width: auto;
+    width: 116px;
 }
 
 .icon-btn {
@@ -747,6 +748,11 @@ header {
     }
 
     .logo-img {
+        height: 64px;
+        width: 169px;
+    }
+
+    .logo {
         height: 64px;
     }
 
