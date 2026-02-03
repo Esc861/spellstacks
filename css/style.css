@@ -618,12 +618,11 @@ header {
         padding: 0;
     }
 
-    .logo-img { display: none; }
-
+    .logo { display: none; }
     #statsBtn { display: none; }
-
     .date { display: none; }
     .objective { display: none; }
+    header { min-height: 0; }
 
     .words {
         grid-area: words;
