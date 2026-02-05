@@ -74,8 +74,8 @@
         :root{--bg:#f8f7f4;--card:#fff;--text:#2d2d2d;--muted:#6b7280;--accent:#3b7dd8;--tile-border:#e5e5e4}
         @media(prefers-color-scheme:dark){:root{--bg:#171717;--card:#262626;--text:#f5f5f4;--muted:#a1a1aa;--accent:#5b9ae8;--tile-border:#404040}}
         html,body{height:100vh;height:100dvh;overflow:hidden}
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);background-image:radial-gradient(ellipse 120% 80% at 50% -10%,rgba(255,255,255,0.8) 0%,transparent 50%);color:var(--text)}
-        @media(prefers-color-scheme:dark){body{background-image:radial-gradient(ellipse 120% 80% at 50% -10%,rgba(255,255,255,0.06) 0%,transparent 50%)}}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(to bottom,#fff 0%,#ece9e3 100%);color:var(--text)}
+        @media(prefers-color-scheme:dark){body{background:linear-gradient(to bottom,#222 0%,#111 100%)}}
         .app{max-width:400px;margin:0 auto;padding:12px 12px 28px;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
         header{text-align:center;padding:4px 0;flex-shrink:0;position:relative;min-height:60px}
         .logo{display:flex;justify-content:center;height:44px}
