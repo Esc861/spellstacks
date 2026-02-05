@@ -351,6 +351,25 @@ header {
     flex-shrink: 0;
 }
 
+.shuffle-btn {
+    flex: 0 0 44px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--tile-border);
+    color: var(--muted);
+}
+
+.shuffle-btn:hover:not(:disabled) {
+    background: var(--tile-border);
+    color: var(--text);
+    box-shadow: none;
+}
+
+.shuffle-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
 .btn {
     flex: 1;
     padding: 12px;
@@ -702,6 +721,16 @@ header {
         flex: 1;
         padding: 10px 4px;
         font-size: 13px;
+    }
+
+    .shuffle-btn {
+        flex: 0 0 36px;
+        padding: 8px;
+    }
+
+    .shuffle-btn svg {
+        width: 16px;
+        height: 16px;
     }
 
     .completed-message { padding: 12px; }
