@@ -67,7 +67,6 @@
 
         // Events
         document.getElementById('addBtn').addEventListener('click', addWord);
-        document.getElementById('shuffleBtn').addEventListener('click', shuffleRack);
 
         document.getElementById('statsBtn').addEventListener('click', () => {
             document.getElementById('statPlayed').textContent = stats.played;
@@ -227,45 +226,6 @@
         current.pop();
         renderRack();
         renderBuilder();
-    }
-
-    function shuffleRack() {
-        if (done) return;
-
-        // Clear current selection first
-        current = [];
-
-        // Get indices of unused letters
-        const unusedIndices = [];
-        for (let i = 0; i < letters.length; i++) {
-            if (!used.has(i)) unusedIndices.push(i);
-        }
-
-        // Fisher-Yates shuffle of unused positions
-        const unusedLetters = unusedIndices.map(i => letters[i]);
-        for (let i = unusedLetters.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [unusedLetters[i], unusedLetters[j]] = [unusedLetters[j], unusedLetters[i]];
-        }
-
-        // Put shuffled letters back
-        unusedIndices.forEach((idx, i) => {
-            letters[idx] = unusedLetters[i];
-        });
-
-        haptic(10);
-        renderRack();
-        renderBuilder();
-        save();
-
-        // Animate unused tiles
-        const tiles = document.querySelectorAll('.tile:not(.used)');
-        tiles.forEach(tile => {
-            tile.classList.add('shuffling');
-            tile.addEventListener('animationend', () => {
-                tile.classList.remove('shuffling');
-            }, { once: true });
-        });
     }
 
     function addWord() {
