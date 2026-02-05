@@ -257,6 +257,15 @@
         renderRack();
         renderBuilder();
         save();
+
+        // Animate unused tiles
+        const tiles = document.querySelectorAll('.tile:not(.used)');
+        tiles.forEach(tile => {
+            tile.classList.add('shuffling');
+            tile.addEventListener('animationend', () => {
+                tile.classList.remove('shuffling');
+            }, { once: true });
+        });
     }
 
     function addWord() {
