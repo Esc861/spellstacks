@@ -70,6 +70,8 @@ body {
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 /* Header */
@@ -492,6 +494,7 @@ header {
 .modal {
     position: fixed;
     inset: 0;
+    z-index: 10;
     background: rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
