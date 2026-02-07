@@ -218,10 +218,8 @@
     function sparkle(element) {
         const rect = element.getBoundingClientRect();
         const colors = [
-            '#5b9ae8', '#7bb0f0', '#4a88d4',  // blues
-            '#9b7be8', '#b08ef0', '#8866d9',  // purples
-            '#f4c430', '#f0d860', '#e8b820',  // golds
-            '#fff', '#f0f0ff', '#fffaf0'      // whites
+            '#3b7dd8', '#5b9ae8', '#7bb0f0', '#4a88d4',
+            '#2d6bc4', '#6ba3ec', '#8bbef4', '#5590dc'
         ];
 
         for (let i = 0; i < 10; i++) {
@@ -232,7 +230,7 @@
             spark.style.color = colors[Math.floor(Math.random() * colors.length)];
             spark.style.setProperty('--tx', (Math.random() - 0.5) * 80 + 'px');
             spark.style.setProperty('--ty', (Math.random() - 0.5) * 50 - 25 + 'px');
-            spark.style.setProperty('--size', (12 + Math.random() * 8) + 'px');
+            spark.style.setProperty('--size', (8 + Math.random() * 14) + 'px');
             spark.style.setProperty('--rot', (120 + Math.random() * 240) + 'deg');
             document.body.appendChild(spark);
 
