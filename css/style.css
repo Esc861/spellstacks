@@ -258,6 +258,7 @@ header {
 .sparkle {
     position: fixed;
     pointer-events: none;
+    z-index: 2;
     animation: sparkleFloat 0.9s ease-out forwards;
 }
 
