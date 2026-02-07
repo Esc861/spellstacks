@@ -44,13 +44,13 @@ const LetterSystem = (function() {
         return available[available.length - 1][0];
     }
 
-    function generateLetters(date = new Date(), wordList = null) {
+    function generateLetters(date = new Date(), wordList = null, magicWords = null) {
         const seed = getDateSeed(date);
         const rng = mulberry32(seed);
 
         // If we have a word list, use word-based generation
         if (wordList && wordList.length > 0) {
-            const result = generateFromWords(rng, wordList);
+            const result = generateFromWords(rng, wordList, magicWords);
             if (result) return result;
         }
 
@@ -58,7 +58,7 @@ const LetterSystem = (function() {
         return { letters: generateRandom(rng), wordCount: null };
     }
 
-    function generateFromWords(rng, wordList) {
+    function generateFromWords(rng, wordList, magicWords) {
         // Group words by length (2-9 letters only)
         const byLength = {};
         for (const word of wordList) {
@@ -118,6 +118,23 @@ const LetterSystem = (function() {
             }
 
             if (valid) {
+                // Ensure at least one magic word if possible
+                if (magicWords) {
+                    const hasMagic = words.some(w => magicWords.has(w.toUpperCase()));
+                    if (!hasMagic) {
+                        for (let i = 0; i < words.length; i++) {
+                            const len = words[i].length;
+                            const replacement = byLength[len]?.find(w =>
+                                magicWords.has(w.toUpperCase()) && !words.includes(w)
+                            );
+                            if (replacement) {
+                                words[i] = replacement;
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 // Extract letters from words and shuffle
                 const letters = words.join('').split('');
                 shuffle(letters, rng);

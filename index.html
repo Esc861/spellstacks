@@ -98,6 +98,8 @@
     <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 <body>
+    <div class="ambient-particles" id="ambientParticles"></div>
+
     <!-- Screen reader announcements -->
     <div id="srAnnounce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
@@ -151,9 +153,10 @@
             <h2>Statistics</h2>
             <div class="stats-row">
                 <div><b id="statPlayed">0</b><br>Played</div>
-                <div><b id="statStreak">0</b><br>Streak</div>
+                <div><b id="statStreak">0</b><br>Spell Streak</div>
                 <div><b id="statBest">0</b><br>Best Streak</div>
                 <div><b id="statFewest">-</b><br>Fewest Words</div>
+                <div><b id="statMagic">0</b><br>Magic Words</div>
             </div>
         </div>
     </div>
@@ -167,6 +170,7 @@
             <div class="final-score" id="finalScore">0</div>
             <p id="summary">words</p>
             <p class="par-message" id="parMessage"></p>
+            <p class="magic-message" id="magicMessage"></p>
             <button class="btn primary" id="shareBtn">Share</button>
             <button class="btn" id="replayBtn">Play Again</button>
             <div class="modal-footer">

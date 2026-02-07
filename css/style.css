@@ -186,6 +186,15 @@ header {
     border-color: var(--accent);
 }
 
+.word.magic {
+    background: linear-gradient(135deg, rgba(123,47,247,0.08), rgba(245,197,66,0.10));
+    border-color: rgba(123,47,247,0.25);
+}
+
+.word.magic:hover {
+    border-color: rgba(123,47,247,0.45);
+}
+
 .word-text {
     flex: 1;
 }
@@ -557,10 +566,10 @@ header {
 
 .stats-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
     margin-bottom: 20px;
-    font-size: 11px;
+    font-size: 10px;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.03em;
@@ -568,7 +577,7 @@ header {
 
 .stats-row b {
     display: block;
-    font-size: 28px;
+    font-size: 24px;
     color: var(--accent);
     margin-bottom: 4px;
 }
@@ -600,6 +609,18 @@ header {
     margin-bottom: 20px;
     font-style: italic;
     opacity: 0.7;
+}
+
+.magic-message {
+    color: #7b2ff7;
+    font-size: 13px;
+    margin-bottom: 20px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.magic-message:empty {
+    display: none;
 }
 
 .modal-content .btn { margin-top: 8px; }
@@ -635,12 +656,58 @@ header {
 
 .shake { animation: shake 0.25s ease; }
 
+/* Ambient background particles */
+.ambient-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.ambient-particle {
+    position: absolute;
+    bottom: -10px;
+    width: var(--size, 4px);
+    height: var(--size, 4px);
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ambientDrift linear infinite;
+}
+
+@keyframes ambientDrift {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+        bottom: -10px;
+    }
+    10% {
+        opacity: 0.18;
+    }
+    50% {
+        opacity: 0.22;
+        transform: translateY(-50vh) translateX(var(--sway, 25px));
+    }
+    90% {
+        opacity: 0.18;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-105vh) translateX(0);
+    }
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .ambient-particles {
+        display: none;
     }
 }
 
