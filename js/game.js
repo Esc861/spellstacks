@@ -351,6 +351,16 @@
             summary += ` — a new best!`;
         }
         document.getElementById('summary').textContent = summary;
+
+        // Calculate and display par
+        const par = Dictionary.calculatePar(letters);
+        const parMessage = document.getElementById('parMessage');
+        if (par > 0) {
+            parMessage.textContent = `Top players completed this puzzle in ${par} word${par !== 1 ? 's' : ''}`;
+        } else {
+            parMessage.textContent = '';
+        }
+
         document.getElementById('completeModal').classList.add('show');
     }
 

@@ -258,12 +258,56 @@ const Dictionary = (function() {
         return COMMON_WORDS;
     }
 
+    // Calculate par using greedy algorithm (always pick longest valid word)
+    function calculatePar(letters) {
+        let remaining = letters.map(l => l.toUpperCase());
+        let wordCount = 0;
+
+        while (remaining.length > 0) {
+            let bestWord = null;
+
+            // Find longest valid word from remaining letters
+            for (const word of wordSet) {
+                if (word.length > remaining.length) continue;
+                if (bestWord && word.length <= bestWord.length) continue;
+
+                // Check if word can be formed from remaining letters
+                const lettersCopy = [...remaining];
+                let canForm = true;
+                for (const char of word) {
+                    const idx = lettersCopy.indexOf(char);
+                    if (idx === -1) {
+                        canForm = false;
+                        break;
+                    }
+                    lettersCopy.splice(idx, 1);
+                }
+
+                if (canForm) {
+                    bestWord = word;
+                }
+            }
+
+            if (!bestWord) break; // No valid word found (shouldn't happen with valid puzzle)
+
+            // Remove used letters
+            for (const char of bestWord) {
+                const idx = remaining.indexOf(char);
+                if (idx !== -1) remaining.splice(idx, 1);
+            }
+            wordCount++;
+        }
+
+        return wordCount;
+    }
+
     return {
         load,
         isValidWord,
         filterValidWords,
         isReady,
         getWords,
-        getCommonWords
+        getCommonWords,
+        calculatePar
     };
 })();

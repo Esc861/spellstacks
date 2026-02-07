@@ -590,7 +590,14 @@ header {
     color: var(--muted);
     font-size: 14px;
     margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.par-message {
+    color: var(--muted);
+    font-size: 13px;
     margin-bottom: 20px;
+    font-style: italic;
 }
 
 .modal-content .btn { margin-top: 8px; }
