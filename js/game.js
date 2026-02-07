@@ -61,6 +61,7 @@
             used = new Set(saved.used);
             words = saved.words;
             done = saved.done;
+            lastWordCount = words.length; // Prevent animation on restore
         } else {
             letters = LetterSystem.generateLetters(new Date(), Dictionary.getCommonWords());
         }
