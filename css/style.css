@@ -549,7 +549,7 @@ header {
 }
 
 .modal-content h2 {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     font-size: 18px;
     font-weight: 700;
     color: var(--text);
@@ -589,7 +589,7 @@ header {
 #summary {
     color: var(--muted);
     font-size: 14px;
-    margin-top: 8px;
+    margin-top: 4px;
     margin-bottom: 16px;
 }
 
