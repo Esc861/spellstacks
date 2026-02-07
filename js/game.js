@@ -234,7 +234,7 @@
             spark.style.setProperty('--rot', (120 + Math.random() * 240) + 'deg');
             document.body.appendChild(spark);
 
-            setTimeout(() => spark.remove(), 900);
+            spark.addEventListener('animationend', () => spark.remove(), { once: true });
         }
     }
 
