@@ -50,6 +50,7 @@
 
         loadStats();
         await Dictionary.load();
+        cacheDom();
 
         const seed = LetterSystem.getDateSeed();
         const saved = load();
@@ -130,7 +131,7 @@
 
         // Show/hide elements based on game state
         document.getElementById('actions').style.display = done ? 'none' : 'flex';
-        document.getElementById('rack').style.display = done ? 'none' : 'grid';
+        rackEl.style.display = done ? 'none' : 'grid';
         document.getElementById('completedMessage').style.display = done ? 'flex' : 'none';
 
         if (done) {
@@ -138,57 +139,85 @@
         }
     }
 
+    // Cache DOM references
+    let rackEl, builderEl, wordsEl, addBtnEl, builderGroupEl;
+
+    function cacheDom() {
+        rackEl = document.getElementById('rack');
+        builderEl = document.getElementById('builder');
+        wordsEl = document.getElementById('words');
+        addBtnEl = document.getElementById('addBtn');
+        builderGroupEl = document.querySelector('.builder-group');
+
+        // Event delegation - single listener on parent
+        rackEl.addEventListener('click', e => {
+            const btn = e.target.closest('.tile');
+            if (btn && !btn.disabled) {
+                toggleTile(parseInt(btn.dataset.i));
+            }
+        });
+
+        wordsEl.addEventListener('click', e => {
+            const btn = e.target.closest('button[data-i]');
+            if (btn) {
+                removeWord(parseInt(btn.dataset.i));
+            }
+        });
+
+        wordsEl.addEventListener('dblclick', e => {
+            const wordEl = e.target.closest('.word');
+            if (wordEl) {
+                const word = wordEl.dataset.word.toLowerCase();
+                window.open(`https://en.wiktionary.org/wiki/${word}#English`, '_blank', 'noopener');
+            }
+        });
+
+        builderEl.addEventListener('click', e => {
+            if (e.target.closest('.delete-btn')) {
+                deleteLetter();
+            }
+        });
+    }
+
     function renderRack() {
-        const rack = document.getElementById('rack');
-        rack.innerHTML = letters.map((l, i) => {
+        rackEl.innerHTML = letters.map((l, i) => {
             const isUsed = used.has(i) || current.includes(i);
             const cls = isUsed ? 'tile used' : 'tile';
             return `<button class="${cls}" data-i="${i}" ${isUsed || done ? 'disabled' : ''}>${l}</button>`;
         }).join('');
-
-        rack.querySelectorAll('.tile:not(.used)').forEach(btn => {
-            btn.addEventListener('click', () => toggleTile(parseInt(btn.dataset.i)));
-        });
     }
 
     function renderBuilder() {
-        const builder = document.getElementById('builder');
-        const addBtn = document.getElementById('addBtn');
-        const builderGroup = document.querySelector('.builder-group');
-
         if (done) {
-            builderGroup.style.display = 'none';
+            builderGroupEl.style.display = 'none';
             return;
         }
 
-        builderGroup.style.display = 'block';
-        builder.style.display = 'flex';
-        addBtn.disabled = current.length === 0;
+        builderGroupEl.style.display = 'block';
+        builderEl.style.display = 'flex';
+        addBtnEl.disabled = current.length === 0;
 
         if (current.length === 0) {
-            builder.innerHTML = '<span class="hint">Select letters below</span>';
-            builder.className = 'builder';
+            builderEl.innerHTML = '<span class="hint">Select letters below</span>';
+            builderEl.className = 'builder';
             return;
         }
 
         const word = current.map(i => letters[i]).join('');
         const valid = word.length >= 2 && Dictionary.isValidWord(word);
 
-        builder.innerHTML = current.map(i =>
+        builderEl.innerHTML = current.map(i =>
             `<span class="letter">${letters[i]}</span>`
-        ).join('') + '<button class="delete-btn" id="deleteBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg></button>';
+        ).join('') + '<button class="delete-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg></button>';
 
-        builder.className = 'builder' + (word.length >= 2 ? (valid ? ' valid' : ' invalid') : '');
-
-        document.getElementById('deleteBtn').addEventListener('click', deleteLetter);
+        builderEl.className = 'builder' + (word.length >= 2 ? (valid ? ' valid' : ' invalid') : '');
     }
 
     let lastWordCount = 0;
 
     function renderWords() {
-        const container = document.getElementById('words');
         if (words.length === 0) {
-            container.innerHTML = '';
+            wordsEl.innerHTML = '';
             lastWordCount = 0;
             return;
         }
@@ -196,21 +225,9 @@
         const isNewWord = words.length > lastWordCount;
         lastWordCount = words.length;
 
-        container.innerHTML = words.map((w, i) =>
+        wordsEl.innerHTML = words.map((w, i) =>
             `<div class="word${isNewWord && i === 0 ? ' new' : ''}" data-word="${w.word}"><span class="word-text">${w.word}</span>${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
         ).join('');
-
-        container.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => removeWord(parseInt(btn.dataset.i)));
-        });
-
-        // Double-click/tap to open Wiktionary definition
-        container.querySelectorAll('.word').forEach(el => {
-            el.addEventListener('dblclick', () => {
-                const word = el.dataset.word.toLowerCase();
-                window.open(`https://en.wiktionary.org/wiki/${word}#English`, '_blank', 'noopener');
-            });
-        });
     }
 
     function toggleTile(i) {
@@ -280,10 +297,9 @@
     }
 
     function shake() {
-        const b = document.getElementById('builder');
-        b.classList.add('shake');
+        builderEl.classList.add('shake');
         haptic([50, 30, 50]);
-        setTimeout(() => b.classList.remove('shake'), 300);
+        setTimeout(() => builderEl.classList.remove('shake'), 300);
     }
 
     function finish() {
