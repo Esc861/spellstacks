@@ -217,19 +217,26 @@
 
     function sparkle(element) {
         const rect = element.getBoundingClientRect();
-        const colors = ['#6b9ede', '#9b7be8', '#f4b400', '#fff'];
+        const colors = [
+            '#5b9ae8', '#7bb0f0', '#4a88d4',  // blues
+            '#9b7be8', '#b08ef0', '#8866d9',  // purples
+            '#f4c430', '#f0d860', '#e8b820',  // golds
+            '#fff', '#f0f0ff', '#fffaf0'      // whites
+        ];
 
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 10; i++) {
             const spark = document.createElement('div');
             spark.className = 'sparkle';
             spark.style.left = rect.left + Math.random() * rect.width + 'px';
             spark.style.top = rect.top + Math.random() * rect.height + 'px';
             spark.style.color = colors[Math.floor(Math.random() * colors.length)];
-            spark.style.setProperty('--tx', (Math.random() - 0.5) * 60 + 'px');
-            spark.style.setProperty('--ty', (Math.random() - 0.5) * 40 - 20 + 'px');
+            spark.style.setProperty('--tx', (Math.random() - 0.5) * 80 + 'px');
+            spark.style.setProperty('--ty', (Math.random() - 0.5) * 50 - 25 + 'px');
+            spark.style.setProperty('--size', (12 + Math.random() * 8) + 'px');
+            spark.style.setProperty('--rot', (120 + Math.random() * 240) + 'deg');
             document.body.appendChild(spark);
 
-            setTimeout(() => spark.remove(), 600);
+            setTimeout(() => spark.remove(), 900);
         }
     }
 
