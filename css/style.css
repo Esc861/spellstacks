@@ -199,6 +199,7 @@ header {
     border-radius: inherit;
     background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.7) 50%, transparent 100%);
     animation: shimmer 0.7s ease-out;
+    pointer-events: none;
 }
 
 .word.new::after {
@@ -210,6 +211,7 @@ header {
     opacity: 0;
     animation: glowPulse 0.5s ease-out;
     z-index: -1;
+    pointer-events: none;
 }
 
 @keyframes magicStack {
