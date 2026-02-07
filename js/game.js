@@ -10,23 +10,20 @@
     let stats = { played: 0, streak: 0, best: 0, fewest: null, lastDate: null };
     let calculatedPar = null;
 
-    const MAGIC_WORDS = {
-        'MAGIC': '\u{1FA84}', 'WAND': '\u{1FA84}', 'SPELL': '\u2728',
-        'POTION': '\u{1F9EA}', 'CRYSTAL': '\u{1F52E}', 'ORB': '\u{1F52E}',
-        'GHOST': '\u{1F47B}', 'PHANTOM': '\u{1F47B}', 'SPIRIT': '\u{1F47B}',
-        'WITCH': '\u{1F9D9}', 'WIZARD': '\u{1F9D9}', 'MAGE': '\u{1F9D9}',
-        'DRAGON': '\u{1F409}', 'PIXIE': '\u{1F9DA}', 'SPRITE': '\u{1F9DA}',
-        'DJINN': '\u{1F9DE}', 'SIREN': '\u{1F9DC}',
-        'FLAME': '\u{1F525}', 'EMBER': '\u{1F525}', 'PYRE': '\u{1F525}',
-        'FROST': '\u2744\uFE0F', 'STORM': '\u26C8\uFE0F', 'BOLT': '\u26A1',
-        'SPARK': '\u2728', 'GLOW': '\u2728',
-        'STAR': '\u2B50', 'MOON': '\u{1F319}',
-        'OWL': '\u{1F989}', 'TOAD': '\u{1F438}', 'DOVE': '\u{1F54A}\uFE0F',
-        'SCROLL': '\u{1F4DC}', 'CANDLE': '\u{1F56F}\uFE0F',
-        'HAT': '\u{1F3A9}', 'TRICK': '\u{1F3A9}',
-        'CARD': '\u{1F0CF}', 'DECK': '\u{1F0CF}', 'ACE': '\u{1F0CF}',
-        'COIN': '\u{1FA99}', 'CROWN': '\u{1F451}'
-    };
+    const MAGIC_WORDS = new Set([
+        'SPELL', 'MAGIC', 'WAND', 'HEX', 'CHARM', 'CURSE', 'POTION', 'RUNE', 'ARCANE', 'MYSTIC',
+        'ENCHANT', 'CONJURE', 'RITUAL', 'OMEN', 'ORACLE', 'AMULET', 'SORCERY', 'VOODOO',
+        'WITCH', 'WIZARD', 'COVEN', 'BREW', 'ELIXIR', 'FAIRY',
+        'HAUNT', 'GHOST', 'SPIRIT', 'PHANTOM', 'WRAITH', 'SPECTER', 'DEMON',
+        'SUMMON', 'INVOKE', 'CAST', 'SCROLL', 'TOME', 'ORB', 'CRYSTAL', 'ALCHEMY', 'CAULDRON',
+        'JINX', 'WISH', 'BLESS', 'SMITE', 'BANISH', 'SCRY', 'DISPEL', 'BEWITCH',
+        'MORPH', 'WARP', 'BLINK', 'WARD',
+        'MAGE', 'DRUID', 'SHAMAN',
+        'PIXIE', 'SPRITE', 'GNOME', 'IMP', 'DRAGON', 'NYMPH', 'GOLEM', 'DJINN',
+        'SIREN', 'FIEND', 'BANSHEE', 'ELF', 'GOBLIN', 'TROLL', 'OGRE',
+        'HYDRA', 'WYRM', 'LICH', 'GHOUL', 'HARPY',
+        'SIGIL', 'TOTEM', 'OCCULT', 'ASTRAL', 'MANA', 'AURA', 'CURSED', 'BLIGHT'
+    ]);
 
     function haptic(pattern = 10) {
         if (navigator.vibrate) navigator.vibrate(pattern);
@@ -112,7 +109,7 @@
         const seed = LetterSystem.getDateSeed();
         const saved = load();
 
-        const generated = LetterSystem.generateLetters(new Date(), Dictionary.getCommonWords(), new Set(Object.keys(MAGIC_WORDS)));
+        const generated = LetterSystem.generateLetters(new Date(), Dictionary.getCommonWords(), MAGIC_WORDS);
         calculatedPar = generated.wordCount;
 
         if (saved && saved.seed === seed) {
@@ -292,9 +289,8 @@
 
     let lastWordCount = 0;
 
-    function sparkle(element, emoji) {
+    function sparkle(element, magic) {
         const rect = element.getBoundingClientRect();
-        const magic = !!emoji;
         const colors = magic
             ? ['#7b2ff7', '#9b59f7', '#c084fc', '#f5c542', '#ffd700', '#e8b828', '#a855f7', '#d4a017']
             : ['#3b7dd8', '#5b9ae8', '#7bb0f0', '#4a88d4', '#2d6bc4', '#6ba3ec', '#8bbef4', '#5590dc'];
@@ -318,23 +314,6 @@
 
             spark.addEventListener('animationend', () => spark.remove(), { once: true });
         }
-
-        // Emit emoji particles for magic words
-        if (emoji) {
-            for (let i = 0; i < 5; i++) {
-                const e = document.createElement('div');
-                e.className = 'sparkle-emoji';
-                e.textContent = emoji;
-                e.style.left = rect.left + Math.random() * rect.width + 'px';
-                e.style.top = rect.top + Math.random() * rect.height + 'px';
-                e.style.setProperty('--tx', (Math.random() - 0.5) * spreadX + 'px');
-                e.style.setProperty('--ty', (Math.random() - 0.5) * spreadY - 25 + 'px');
-                e.style.setProperty('--size', (14 + Math.random() * 10) + 'px');
-                e.style.setProperty('--rot', (60 + Math.random() * 120) + 'deg');
-                document.body.appendChild(e);
-                e.addEventListener('animationend', () => e.remove(), { once: true });
-            }
-        }
     }
 
     function renderWords() {
@@ -354,8 +333,8 @@
         if (isNewWord) {
             const newWordEl = wordsEl.querySelector('.word.new');
             if (newWordEl) {
-                const emoji = MAGIC_WORDS[words[0].word] || null;
-                requestAnimationFrame(() => sparkle(newWordEl, emoji));
+                const isMagic = MAGIC_WORDS.has(words[0].word);
+                requestAnimationFrame(() => sparkle(newWordEl, isMagic));
             }
         }
     }

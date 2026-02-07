@@ -282,15 +282,6 @@ header {
     }
 }
 
-.sparkle-emoji {
-    position: fixed;
-    pointer-events: none;
-    font-size: var(--size, 16px);
-    line-height: 1;
-    animation: sparkleFloat 0.9s ease-out forwards;
-}
-
-
 .word button {
     margin-left: auto;
     width: 24px;
