@@ -8,6 +8,7 @@
     let words = [];
     let done = false;
     let stats = { played: 0, streak: 0, best: 0, fewest: null, lastDate: null };
+    let calculatedPar = null;
 
     function haptic(pattern = 10) {
         if (navigator.vibrate) navigator.vibrate(pattern);
@@ -65,6 +66,11 @@
         }
 
         render();
+
+        // Calculate par in background
+        setTimeout(() => {
+            calculatedPar = Dictionary.calculatePar(letters);
+        }, 100);
 
         // Events
         document.getElementById('addBtn').addEventListener('click', addWord);
@@ -352,13 +358,19 @@
         }
         document.getElementById('summary').textContent = summary;
 
-        // Calculate and display par
-        const par = Dictionary.calculatePar(letters);
+        // Display par (or loading message if still calculating)
         const parMessage = document.getElementById('parMessage');
-        if (par > 0) {
-            parMessage.textContent = `Top players completed this puzzle in ${par} word${par !== 1 ? 's' : ''}`;
+        if (calculatedPar !== null) {
+            parMessage.textContent = `Top players completed this puzzle in ${calculatedPar} word${calculatedPar !== 1 ? 's' : ''}`;
         } else {
-            parMessage.textContent = '';
+            parMessage.textContent = 'Loading top scores...';
+            // Check again when calculation finishes
+            const checkPar = setInterval(() => {
+                if (calculatedPar !== null) {
+                    parMessage.textContent = `Top players completed this puzzle in ${calculatedPar} word${calculatedPar !== 1 ? 's' : ''}`;
+                    clearInterval(checkPar);
+                }
+            }, 100);
         }
 
         document.getElementById('completeModal').classList.add('show');
