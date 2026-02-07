@@ -4,7 +4,7 @@
     "description": "A daily word puzzle game. Stack up words from 18 letters.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#f5f4f2",
+    "background_color": "#eae8e4",
     "theme_color": "#f5f4f2",
     "orientation": "portrait",
     "scope": "/",
