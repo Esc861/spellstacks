@@ -24,52 +24,41 @@
     }
 
     function celebrateComplete() {
-        // Wait for modal to be visible, then sparkle around it
+        // Wait for modal to be visible, then sparkle from center
         setTimeout(() => {
             const modal = document.querySelector('#completeModal .modal-content');
             if (!modal) return;
 
             const rect = modal.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
             const colors = [
                 '#3b7dd8', '#5b9ae8', '#7bb0f0', '#4a88d4',
                 '#2d6bc4', '#6ba3ec', '#8bbef4', '#5590dc'
             ];
 
-            // Create sparkles around the modal edges
-            for (let i = 0; i < 20; i++) {
+            // Create sparkles exploding from center
+            for (let i = 0; i < 24; i++) {
                 const spark = document.createElement('div');
                 spark.className = 'sparkle';
 
-                // Position around the modal perimeter
-                const side = Math.floor(Math.random() * 4);
-                let x, y;
-                if (side === 0) { // top
-                    x = rect.left + Math.random() * rect.width;
-                    y = rect.top;
-                } else if (side === 1) { // right
-                    x = rect.right;
-                    y = rect.top + Math.random() * rect.height;
-                } else if (side === 2) { // bottom
-                    x = rect.left + Math.random() * rect.width;
-                    y = rect.bottom;
-                } else { // left
-                    x = rect.left;
-                    y = rect.top + Math.random() * rect.height;
-                }
-
-                spark.style.left = x + 'px';
-                spark.style.top = y + 'px';
+                // All start from center
+                spark.style.left = centerX + 'px';
+                spark.style.top = centerY + 'px';
                 spark.style.color = colors[Math.floor(Math.random() * colors.length)];
-                spark.style.setProperty('--tx', (Math.random() - 0.5) * 100 + 'px');
-                spark.style.setProperty('--ty', (Math.random() - 0.5) * 100 + 'px');
-                spark.style.setProperty('--size', (10 + Math.random() * 16) + 'px');
-                spark.style.setProperty('--rot', (120 + Math.random() * 240) + 'deg');
-                spark.style.animationDelay = (Math.random() * 0.3) + 's';
+
+                // Explode outward in all directions
+                const angle = (i / 24) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
+                const distance = 80 + Math.random() * 80;
+                spark.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                spark.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                spark.style.setProperty('--size', (12 + Math.random() * 14) + 'px');
+                spark.style.setProperty('--rot', (180 + Math.random() * 360) + 'deg');
                 document.body.appendChild(spark);
 
                 spark.addEventListener('animationend', () => spark.remove(), { once: true });
             }
-        }, 100);
+        }, 50);
     }
 
     async function init() {

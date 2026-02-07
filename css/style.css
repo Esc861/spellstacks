@@ -516,8 +516,8 @@ header {
     text-align: center;
     position: relative;
     box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    transform: scale(0.95);
-    transition: transform 0.2s ease-out;
+    transform: scale(0.8);
+    transition: transform 0.25s ease-out;
 }
 
 .modal.show .modal-content {
