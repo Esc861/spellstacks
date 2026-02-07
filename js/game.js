@@ -10,6 +10,25 @@
     let stats = { played: 0, streak: 0, best: 0, fewest: null, lastDate: null };
     let calculatedPar = null;
 
+    const MAGIC_WORDS = new Set([
+        'SPELL', 'MAGIC', 'WAND', 'HEX', 'CHARM', 'CURSE', 'POTION', 'RUNE', 'ARCANE', 'MYSTIC',
+        'WITCH', 'WIZARD', 'COVEN', 'BREW', 'ELIXIR', 'ENCHANT', 'CONJURE', 'RITUAL', 'OMEN',
+        'ORACLE', 'AMULET', 'SORCERY', 'FAIRY', 'FABLE', 'MYTHIC', 'DIVINE',
+        'HAUNT', 'GHOST', 'SPIRIT', 'PHANTOM', 'WRAITH', 'SPECTER', 'DEMON', 'SUMMON', 'INVOKE',
+        'CAST', 'SCROLL', 'TOME', 'STAFF', 'ORB', 'CRYSTAL', 'VOODOO', 'ALCHEMY', 'FATE',
+        'DOOM', 'BANE', 'WARD', 'SIGIL', 'TOTEM', 'CRYPT', 'VOID', 'DARK', 'GRIM', 'SHADOW',
+        'MOON', 'STAR', 'RAVEN', 'OWL', 'BAT', 'TOAD', 'CAULDRON', 'CLOAK', 'CAPE', 'VEIL',
+        'MAGE', 'DRUID', 'SHAMAN', 'ELF', 'GOBLIN', 'TROLL', 'OGRE', 'PIXIE', 'SPRITE', 'GNOME',
+        'FIRE', 'FLAME', 'FROST', 'STORM', 'BOLT', 'ZAP', 'GLOW', 'FLASH', 'SPARK',
+        'IMP', 'DRAGON', 'HYDRA', 'WYRM', 'LICH', 'GHOUL', 'NYMPH', 'GOLEM', 'DJINN',
+        'HARPY', 'SIREN', 'FIEND', 'BANSHEE', 'SERPENT', 'TITAN',
+        'JINX', 'WISH', 'BLESS', 'SMITE', 'BANISH', 'SCRY', 'BIND', 'DISPEL', 'BEWITCH', 'HEAL',
+        'MORPH', 'WARP', 'BLINK', 'DRAIN',
+        'ASH', 'FOG', 'MIST', 'EMBER', 'ICE', 'DUSK', 'THORN', 'SMOKE', 'PYRE', 'SHADE',
+        'BLADE', 'CROWN', 'RING', 'HELM', 'CANDLE', 'ALTAR', 'LAIR', 'REALM', 'VAULT', 'THRONE',
+        'MANA', 'AURA', 'BLIGHT', 'RIFT', 'OCCULT', 'ASTRAL', 'EERIE', 'FERAL', 'WRATH', 'CURSED'
+    ]);
+
     function haptic(pattern = 10) {
         if (navigator.vibrate) navigator.vibrate(pattern);
     }
@@ -94,6 +113,9 @@
         const seed = LetterSystem.getDateSeed();
         const saved = load();
 
+        const generated = LetterSystem.generateLetters(new Date(), Dictionary.getCommonWords());
+        calculatedPar = generated.wordCount;
+
         if (saved && saved.seed === seed) {
             letters = saved.letters;
             used = new Set(saved.used);
@@ -101,15 +123,10 @@
             done = saved.done;
             lastWordCount = words.length; // Prevent animation on restore
         } else {
-            letters = LetterSystem.generateLetters(new Date(), Dictionary.getCommonWords());
+            letters = generated.letters;
         }
 
         render();
-
-        // Calculate par in background
-        setTimeout(() => {
-            calculatedPar = Dictionary.calculatePar(letters);
-        }, 100);
 
         // Events
         document.getElementById('addBtn').addEventListener('click', addWord);
@@ -260,22 +277,26 @@
 
     let lastWordCount = 0;
 
-    function sparkle(element) {
+    function sparkle(element, magic) {
         const rect = element.getBoundingClientRect();
-        const colors = [
-            '#3b7dd8', '#5b9ae8', '#7bb0f0', '#4a88d4',
-            '#2d6bc4', '#6ba3ec', '#8bbef4', '#5590dc'
-        ];
+        const colors = magic
+            ? ['#7b2ff7', '#9b59f7', '#c084fc', '#f5c542', '#ffd700', '#e8b828', '#a855f7', '#d4a017']
+            : ['#3b7dd8', '#5b9ae8', '#7bb0f0', '#4a88d4', '#2d6bc4', '#6ba3ec', '#8bbef4', '#5590dc'];
+        const count = magic ? 16 : 10;
+        const sizeBase = magic ? 12 : 8;
+        const sizeRange = magic ? 18 : 14;
+        const spreadX = magic ? 100 : 80;
+        const spreadY = magic ? 70 : 50;
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < count; i++) {
             const spark = document.createElement('div');
             spark.className = 'sparkle';
             spark.style.left = rect.left + Math.random() * rect.width + 'px';
             spark.style.top = rect.top + Math.random() * rect.height + 'px';
             spark.style.color = colors[Math.floor(Math.random() * colors.length)];
-            spark.style.setProperty('--tx', (Math.random() - 0.5) * 80 + 'px');
-            spark.style.setProperty('--ty', (Math.random() - 0.5) * 50 - 25 + 'px');
-            spark.style.setProperty('--size', (8 + Math.random() * 14) + 'px');
+            spark.style.setProperty('--tx', (Math.random() - 0.5) * spreadX + 'px');
+            spark.style.setProperty('--ty', (Math.random() - 0.5) * spreadY - 25 + 'px');
+            spark.style.setProperty('--size', (sizeBase + Math.random() * sizeRange) + 'px');
             spark.style.setProperty('--rot', (120 + Math.random() * 240) + 'deg');
             document.body.appendChild(spark);
 
@@ -300,7 +321,8 @@
         if (isNewWord) {
             const newWordEl = wordsEl.querySelector('.word.new');
             if (newWordEl) {
-                requestAnimationFrame(() => sparkle(newWordEl));
+                const isMagic = MAGIC_WORDS.has(words[0].word);
+                requestAnimationFrame(() => sparkle(newWordEl, isMagic));
             }
         }
     }
@@ -397,19 +419,12 @@
         }
         document.getElementById('summary').textContent = summary;
 
-        // Display par (or loading message if still calculating)
+        // Display par
         const parMessage = document.getElementById('parMessage');
         if (calculatedPar !== null) {
             parMessage.innerHTML = `Top players completed this puzzle in <b>${calculatedPar}</b> word${calculatedPar !== 1 ? 's' : ''}`;
         } else {
-            parMessage.textContent = 'Loading top scores...';
-            // Check again when calculation finishes
-            const checkPar = setInterval(() => {
-                if (calculatedPar !== null) {
-                    parMessage.innerHTML = `Top players completed this puzzle in <b>${calculatedPar}</b> word${calculatedPar !== 1 ? 's' : ''}`;
-                    clearInterval(checkPar);
-                }
-            }, 100);
+            parMessage.textContent = '';
         }
 
         document.getElementById('completeModal').classList.add('show');

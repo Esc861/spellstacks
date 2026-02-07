@@ -54,8 +54,8 @@ const LetterSystem = (function() {
             if (result) return result;
         }
 
-        // Fallback to random generation
-        return generateRandom(rng);
+        // Fallback to random generation (no known word count)
+        return { letters: generateRandom(rng), wordCount: null };
     }
 
     function generateFromWords(rng, wordList) {
@@ -121,7 +121,7 @@ const LetterSystem = (function() {
                 // Extract letters from words and shuffle
                 const letters = words.join('').split('');
                 shuffle(letters, rng);
-                return letters;
+                return { letters, wordCount: words.length };
             }
         }
 

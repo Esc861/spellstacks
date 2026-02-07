@@ -254,7 +254,7 @@ header {
 
 /* Sparkle particles */
 .sparkle {
-    position: absolute;
+    position: fixed;
     pointer-events: none;
     animation: sparkleFloat 0.9s ease-out forwards;
 }
