@@ -23,24 +23,53 @@
         }
     }
 
-    function confetti() {
-        const container = document.createElement('div');
-        container.className = 'confetti-container';
-        document.body.appendChild(container);
+    function celebrateComplete() {
+        // Wait for modal to be visible, then sparkle around it
+        setTimeout(() => {
+            const modal = document.querySelector('#completeModal .modal-content');
+            if (!modal) return;
 
-        const colors = ['#4a90d9', '#00a67d', '#f4b400', '#e02c2c', '#9c27b0'];
-        for (let i = 0; i < 50; i++) {
-            const piece = document.createElement('div');
-            piece.className = 'confetti';
-            piece.style.left = Math.random() * 100 + '%';
-            piece.style.top = -10 + 'px';
-            piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-            piece.style.animation = `confetti-fall ${1.5 + Math.random()}s ease-out ${Math.random() * 0.5}s forwards`;
-            container.appendChild(piece);
-        }
+            const rect = modal.getBoundingClientRect();
+            const colors = [
+                '#3b7dd8', '#5b9ae8', '#7bb0f0', '#4a88d4',
+                '#2d6bc4', '#6ba3ec', '#8bbef4', '#5590dc'
+            ];
 
-        setTimeout(() => container.remove(), 3000);
+            // Create sparkles around the modal edges
+            for (let i = 0; i < 20; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'sparkle';
+
+                // Position around the modal perimeter
+                const side = Math.floor(Math.random() * 4);
+                let x, y;
+                if (side === 0) { // top
+                    x = rect.left + Math.random() * rect.width;
+                    y = rect.top;
+                } else if (side === 1) { // right
+                    x = rect.right;
+                    y = rect.top + Math.random() * rect.height;
+                } else if (side === 2) { // bottom
+                    x = rect.left + Math.random() * rect.width;
+                    y = rect.bottom;
+                } else { // left
+                    x = rect.left;
+                    y = rect.top + Math.random() * rect.height;
+                }
+
+                spark.style.left = x + 'px';
+                spark.style.top = y + 'px';
+                spark.style.color = colors[Math.floor(Math.random() * colors.length)];
+                spark.style.setProperty('--tx', (Math.random() - 0.5) * 100 + 'px');
+                spark.style.setProperty('--ty', (Math.random() - 0.5) * 100 + 'px');
+                spark.style.setProperty('--size', (10 + Math.random() * 16) + 'px');
+                spark.style.setProperty('--rot', (120 + Math.random() * 240) + 'deg');
+                spark.style.animationDelay = (Math.random() * 0.3) + 's';
+                document.body.appendChild(spark);
+
+                spark.addEventListener('animationend', () => spark.remove(), { once: true });
+            }
+        }, 100);
     }
 
     async function init() {
@@ -344,8 +373,8 @@
         updateStats();
         save();
         haptic([50, 50, 50, 50, 100]);
-        confetti();
         showComplete();
+        celebrateComplete();
         render();
         announce(`Puzzle complete! You used all letters in ${words.length} words.`);
     }
