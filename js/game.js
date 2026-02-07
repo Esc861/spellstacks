@@ -192,7 +192,7 @@
             p.style.left = Math.random() * 100 + '%';
             p.style.animationDuration = (15 + Math.random() * 10) + 's';
             p.style.animationDelay = -(Math.random() * 20) + 's';
-            p.style.setProperty('--size', (3 + Math.random() * 2) + 'px');
+            p.style.setProperty('--size', (4 + Math.random() * 6) + 'px');
             p.style.setProperty('--sway', (20 + Math.random() * 30) + 'px');
             container.appendChild(p);
         }
