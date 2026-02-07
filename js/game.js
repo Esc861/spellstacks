@@ -362,13 +362,13 @@
         // Display par (or loading message if still calculating)
         const parMessage = document.getElementById('parMessage');
         if (calculatedPar !== null) {
-            parMessage.textContent = `Top players completed this puzzle in ${calculatedPar} word${calculatedPar !== 1 ? 's' : ''}`;
+            parMessage.innerHTML = `Top players completed this puzzle in <b>${calculatedPar}</b> word${calculatedPar !== 1 ? 's' : ''}`;
         } else {
             parMessage.textContent = 'Loading top scores...';
             // Check again when calculation finishes
             const checkPar = setInterval(() => {
                 if (calculatedPar !== null) {
-                    parMessage.textContent = `Top players completed this puzzle in ${calculatedPar} word${calculatedPar !== 1 ? 's' : ''}`;
+                    parMessage.innerHTML = `Top players completed this puzzle in <b>${calculatedPar}</b> word${calculatedPar !== 1 ? 's' : ''}`;
                     clearInterval(checkPar);
                 }
             }, 100);
