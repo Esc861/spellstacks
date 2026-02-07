@@ -215,6 +215,24 @@
 
     let lastWordCount = 0;
 
+    function sparkle(element) {
+        const rect = element.getBoundingClientRect();
+        const colors = ['#6b9ede', '#9b7be8', '#f4b400', '#fff'];
+
+        for (let i = 0; i < 8; i++) {
+            const spark = document.createElement('div');
+            spark.className = 'sparkle';
+            spark.style.left = rect.left + Math.random() * rect.width + 'px';
+            spark.style.top = rect.top + Math.random() * rect.height + 'px';
+            spark.style.color = colors[Math.floor(Math.random() * colors.length)];
+            spark.style.setProperty('--tx', (Math.random() - 0.5) * 60 + 'px');
+            spark.style.setProperty('--ty', (Math.random() - 0.5) * 40 - 20 + 'px');
+            document.body.appendChild(spark);
+
+            setTimeout(() => spark.remove(), 600);
+        }
+    }
+
     function renderWords() {
         if (words.length === 0) {
             wordsEl.innerHTML = '';
@@ -228,6 +246,13 @@
         wordsEl.innerHTML = words.map((w, i) =>
             `<div class="word${isNewWord && i === 0 ? ' new' : ''}" data-word="${w.word}"><span class="word-text">${w.word}</span>${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
         ).join('');
+
+        if (isNewWord) {
+            const newWordEl = wordsEl.querySelector('.word.new');
+            if (newWordEl) {
+                requestAnimationFrame(() => sparkle(newWordEl));
+            }
+        }
     }
 
     function toggleTile(i) {
