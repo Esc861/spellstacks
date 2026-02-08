@@ -138,6 +138,7 @@
             tiles.forEach((tile, i) => {
                 tile.classList.add('tile-reveal');
                 tile.style.animationDelay = (i * 30) + 'ms';
+                tile.addEventListener('animationend', () => tile.classList.remove('tile-reveal'), { once: true });
             });
         }
 
