@@ -166,6 +166,7 @@
         document.getElementById('closeComplete').addEventListener('click', () => {
             document.getElementById('completeModal').classList.remove('show');
         });
+        document.getElementById('completedMessage').addEventListener('click', showComplete);
 
         document.getElementById('shareBtn').addEventListener('click', share);
         document.getElementById('replayBtn').addEventListener('click', replay);
