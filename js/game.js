@@ -375,8 +375,17 @@
 
     function deleteLetter() {
         if (current.length === 0) return;
-        current.pop();
-        renderRack();
+        const restored = current.pop();
+
+        // Animate the tile back
+        const tile = rackEl.querySelector(`.tile[data-i="${restored}"]`);
+        if (tile) {
+            tile.disabled = false;
+            tile.classList.remove('tile-select');
+            tile.classList.add('tile-restore');
+            tile.addEventListener('animationend', () => tile.classList.remove('tile-restore'), { once: true });
+        }
+
         renderBuilder();
     }
 

@@ -450,6 +450,24 @@ header {
     }
 }
 
+.tile-restore {
+    animation: tileRestore 0.2s ease-out both;
+}
+
+@keyframes tileRestore {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.25;
+    }
+    60% {
+        transform: scale(1.06);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .tile-empty {
     color: transparent;
 }
