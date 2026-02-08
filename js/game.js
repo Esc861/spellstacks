@@ -102,6 +102,12 @@
             month: 'short', day: 'numeric'
         });
 
+        // Show 18 empty placeholder tiles immediately
+        const rackEl = document.getElementById('rack');
+        rackEl.innerHTML = Array.from({ length: 18 }, (_, i) =>
+            `<button class="tile tile-empty" data-i="${i}" disabled></button>`
+        ).join('');
+
         loadStats();
         await Dictionary.load();
         cacheDom();
@@ -112,6 +118,7 @@
         const generated = LetterSystem.generateLetters(new Date(), Dictionary.getCommonWords(), MAGIC_WORDS);
         calculatedPar = generated.wordCount;
 
+        let animate = false;
         if (saved && saved.seed === seed) {
             letters = saved.letters;
             used = new Set(saved.used);
@@ -120,9 +127,19 @@
             lastWordCount = words.length; // Prevent animation on restore
         } else {
             letters = generated.letters;
+            animate = true;
         }
 
         render();
+
+        // Staggered letter reveal animation
+        if (animate && !done) {
+            const tiles = rackEl.querySelectorAll('.tile');
+            tiles.forEach((tile, i) => {
+                tile.classList.add('tile-reveal');
+                tile.style.animationDelay = (i * 30) + 'ms';
+            });
+        }
 
         // Events
         document.getElementById('addBtn').addEventListener('click', addWord);
