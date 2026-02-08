@@ -348,25 +348,28 @@
 
     function startWandSparkle() {
         stopWandSparkle();
-        const colors = ['#7b2ff7', '#c084fc', '#f5c542', '#ffd700', '#a855f7'];
+        const colors = ['#7b2ff7', '#9b59f7', '#c084fc', '#f5c542', '#ffd700', '#e8b828', '#a855f7', '#d4a017'];
         wandSparkleInterval = setInterval(() => {
             const emoji = document.querySelector('.completed-emoji');
             if (!emoji) return;
             const rect = emoji.getBoundingClientRect();
             if (rect.width === 0) return;
 
-            const spark = document.createElement('div');
-            spark.className = 'sparkle';
-            spark.style.left = (rect.right - rect.width * 0.2 + (Math.random() - 0.5) * 8) + 'px';
-            spark.style.top = (rect.top + rect.height * 0.15 + (Math.random() - 0.5) * 8) + 'px';
-            spark.style.color = colors[Math.floor(Math.random() * colors.length)];
-            spark.style.setProperty('--tx', (Math.random() * 15 + 5) + 'px');
-            spark.style.setProperty('--ty', -(Math.random() * 20 + 8) + 'px');
-            spark.style.setProperty('--size', (4 + Math.random() * 4) + 'px');
-            spark.style.setProperty('--rot', (90 + Math.random() * 180) + 'deg');
-            document.body.appendChild(spark);
-            spark.addEventListener('animationend', () => spark.remove(), { once: true });
-        }, 1200);
+            const count = 1 + Math.floor(Math.random() * 2); // 1-2 particles per tick
+            for (let i = 0; i < count; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'sparkle';
+                spark.style.left = (rect.right - rect.width * 0.25 + (Math.random() - 0.5) * 14) + 'px';
+                spark.style.top = (rect.top + rect.height * 0.2 + (Math.random() - 0.5) * 14) + 'px';
+                spark.style.color = colors[Math.floor(Math.random() * colors.length)];
+                spark.style.setProperty('--tx', ((Math.random() - 0.3) * 80) + 'px');
+                spark.style.setProperty('--ty', -(Math.random() * 50 + 15) + 'px');
+                spark.style.setProperty('--size', (12 + Math.random() * 18) + 'px');
+                spark.style.setProperty('--rot', (120 + Math.random() * 240) + 'deg');
+                document.body.appendChild(spark);
+                spark.addEventListener('animationend', () => spark.remove(), { once: true });
+            }
+        }, 600);
     }
 
     function stopWandSparkle() {
