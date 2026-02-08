@@ -306,16 +306,17 @@
 
     let lastWordCount = 0;
 
-    function sparkle(element, magic) {
+    function sparkle(element, magic, wordLen) {
         const rect = element.getBoundingClientRect();
         const colors = magic
             ? ['#7b2ff7', '#9b59f7', '#c084fc', '#f5c542', '#ffd700', '#e8b828', '#a855f7', '#d4a017']
             : ['#3b7dd8', '#5b9ae8', '#7bb0f0', '#4a88d4', '#2d6bc4', '#6ba3ec', '#8bbef4', '#5590dc'];
-        const count = magic ? 16 : 10;
-        const sizeBase = magic ? 12 : 8;
+        const lenBonus = Math.min((wordLen || 2) - 2, 6); // 0 for 2-letter, up to 6 for 8+
+        const count = (magic ? 14 : 6) + lenBonus * 2;
+        const sizeBase = (magic ? 10 : 6) + lenBonus;
         const sizeRange = magic ? 18 : 14;
-        const spreadX = magic ? 100 : 80;
-        const spreadY = magic ? 70 : 50;
+        const spreadX = (magic ? 80 : 60) + lenBonus * 6;
+        const spreadY = (magic ? 50 : 35) + lenBonus * 4;
 
         for (let i = 0; i < count; i++) {
             const spark = document.createElement('div');
@@ -351,16 +352,24 @@
             const newWordEl = wordsEl.querySelector('.word.new');
             if (newWordEl) {
                 const isMagic = MAGIC_WORDS.has(words[0].word);
-                requestAnimationFrame(() => sparkle(newWordEl, isMagic));
+                const len = words[0].word.length;
+                requestAnimationFrame(() => sparkle(newWordEl, isMagic, len));
             }
         }
     }
 
     function toggleTile(i) {
         if (done || used.has(i) || current.includes(i)) return;
+
+        // Animate the selected tile
+        const tile = rackEl.querySelector(`.tile[data-i="${i}"]`);
+        if (tile) {
+            tile.classList.add('tile-select');
+            tile.disabled = true;
+        }
+
         current.push(i);
         haptic(10);
-        renderRack();
         renderBuilder();
     }
 

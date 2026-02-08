@@ -432,6 +432,24 @@ header {
 .tile:disabled { cursor: default; }
 .tile.used { opacity: 0.25; cursor: default; }
 
+.tile-select {
+    animation: tileSelect 0.2s ease-out forwards;
+}
+
+@keyframes tileSelect {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.25;
+    }
+}
+
 .tile-empty {
     color: transparent;
 }
