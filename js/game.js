@@ -10,6 +10,7 @@
     let previousWords = null;
     let stats = { played: 0, streak: 0, best: 0, fewest: null, lastDate: null };
     let calculatedPar = null;
+    let wandSparkleInterval = null;
 
     const MAGIC_WORDS = new Set([
         'SPELL', 'MAGIC', 'WAND', 'HEX', 'CHARM', 'CURSE', 'POTION', 'RUNE', 'ARCANE', 'MYSTIC',
@@ -133,6 +134,9 @@
 
         render();
 
+        // Start wand sparkle if returning to a completed puzzle
+        if (done) startWandSparkle();
+
         // Staggered letter reveal animation
         if (animate && !done) {
             const tiles = rackEl.querySelectorAll('.tile');
@@ -159,6 +163,13 @@
         });
         document.getElementById('closeComplete').addEventListener('click', () => {
             document.getElementById('completeModal').classList.remove('show');
+        });
+
+        // Start continuous wand sparkle when complete modal closes
+        document.getElementById('completeModal').addEventListener('transitionend', () => {
+            if (!document.getElementById('completeModal').classList.contains('show') && done) {
+                startWandSparkle();
+            }
         });
         document.getElementById('shareBtn').addEventListener('click', share);
         document.getElementById('replayBtn').addEventListener('click', replay);
@@ -335,6 +346,36 @@
         }
     }
 
+    function startWandSparkle() {
+        stopWandSparkle();
+        const colors = ['#7b2ff7', '#c084fc', '#f5c542', '#ffd700', '#a855f7'];
+        wandSparkleInterval = setInterval(() => {
+            const emoji = document.querySelector('.completed-emoji');
+            if (!emoji) return;
+            const rect = emoji.getBoundingClientRect();
+            if (rect.width === 0) return;
+
+            const spark = document.createElement('div');
+            spark.className = 'sparkle';
+            spark.style.left = (rect.right - rect.width * 0.2 + (Math.random() - 0.5) * 8) + 'px';
+            spark.style.top = (rect.top + rect.height * 0.15 + (Math.random() - 0.5) * 8) + 'px';
+            spark.style.color = colors[Math.floor(Math.random() * colors.length)];
+            spark.style.setProperty('--tx', (Math.random() * 15 + 5) + 'px');
+            spark.style.setProperty('--ty', -(Math.random() * 20 + 8) + 'px');
+            spark.style.setProperty('--size', (4 + Math.random() * 4) + 'px');
+            spark.style.setProperty('--rot', (90 + Math.random() * 180) + 'deg');
+            document.body.appendChild(spark);
+            spark.addEventListener('animationend', () => spark.remove(), { once: true });
+        }, 1200);
+    }
+
+    function stopWandSparkle() {
+        if (wandSparkleInterval) {
+            clearInterval(wandSparkleInterval);
+            wandSparkleInterval = null;
+        }
+    }
+
     function renderWords() {
         const previousHint = previousWords && !done
             ? `<div class="previous-words">Last time: ${previousWords.join(', ')}</div>`
@@ -459,12 +500,6 @@
         celebrateComplete();
         render();
         announce(`Puzzle complete! You used all letters in ${words.length} words.`);
-
-        // Sparkle the completion emoji
-        requestAnimationFrame(() => {
-            const emoji = document.querySelector('.completed-emoji');
-            if (emoji) sparkle(emoji, true);
-        });
     }
 
     function showComplete() {
@@ -488,6 +523,7 @@
     }
 
     function replay() {
+        stopWandSparkle();
         previousWords = words.map(w => w.word);
         used = new Set();
         current = [];
