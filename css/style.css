@@ -671,14 +671,14 @@ header {
         bottom: -10px;
     }
     10% {
-        opacity: 0.1;
+        opacity: 0.06;
     }
     50% {
-        opacity: 0.13;
+        opacity: 0.08;
         transform: translateY(-50vh) translateX(var(--sway, 25px));
     }
     90% {
-        opacity: 0.1;
+        opacity: 0.06;
     }
     100% {
         opacity: 0;
