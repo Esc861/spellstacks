@@ -312,6 +312,15 @@ header {
     background: rgba(227, 106, 46, 0.1);
 }
 
+.previous-words {
+    font-size: 12px;
+    color: var(--muted);
+    opacity: 0.5;
+    padding: 6px 12px;
+    margin-top: auto;
+    line-height: 1.4;
+}
+
 /* Builder group */
 .builder-group {
     background: var(--card);

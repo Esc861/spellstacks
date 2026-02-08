@@ -7,6 +7,7 @@
     let current = [];
     let words = [];
     let done = false;
+    let previousWords = null;
     let stats = { played: 0, streak: 0, best: 0, fewest: null, lastDate: null };
     let calculatedPar = null;
 
@@ -335,8 +336,12 @@
     }
 
     function renderWords() {
+        const previousHint = previousWords && !done
+            ? `<div class="previous-words">Last time: ${previousWords.join(', ')}</div>`
+            : '';
+
         if (words.length === 0) {
-            wordsEl.innerHTML = '';
+            wordsEl.innerHTML = previousHint;
             lastWordCount = 0;
             return;
         }
@@ -346,7 +351,7 @@
 
         wordsEl.innerHTML = words.map((w, i) =>
             `<div class="word${isNewWord && i === 0 ? ' new' : ''}" data-word="${w.word}"><span class="word-text">${w.word}</span>${!done ? `<button data-i="${i}">&times;</button>` : ''}</div>`
-        ).join('');
+        ).join('') + previousHint;
 
         if (isNewWord) {
             const newWordEl = wordsEl.querySelector('.word.new');
@@ -477,6 +482,7 @@
     }
 
     function replay() {
+        previousWords = words.map(w => w.word);
         used = new Set();
         current = [];
         words = [];
