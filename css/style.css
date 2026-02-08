@@ -554,9 +554,9 @@ header {
 }
 
 .completed-emoji {
-    font-size: 48px;
+    font-size: 64px;
     line-height: 1;
-    margin: 12px 0;
+    margin: 16px 0;
 }
 
 .completed-message .countdown {

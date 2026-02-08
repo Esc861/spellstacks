@@ -459,6 +459,12 @@
         celebrateComplete();
         render();
         announce(`Puzzle complete! You used all letters in ${words.length} words.`);
+
+        // Sparkle the completion emoji
+        requestAnimationFrame(() => {
+            const emoji = document.querySelector('.completed-emoji');
+            if (emoji) sparkle(emoji, true);
+        });
     }
 
     function showComplete() {
