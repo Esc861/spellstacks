@@ -698,6 +698,32 @@ header {
     color: var(--accent);
     line-height: 1;
     margin-top: -8px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.final-score.shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 30%,
+        rgba(255, 255, 255, 0.5) 48%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0.5) 52%,
+        transparent 70%,
+        transparent 100%
+    );
+    transform: translateX(-150%);
+    animation: scoreShine 0.6s ease-in-out 0.5s forwards;
+}
+
+@keyframes scoreShine {
+    0% { transform: translateX(-150%); opacity: 1; }
+    100% { transform: translateX(150%); opacity: 1; }
 }
 
 #summary {

@@ -474,7 +474,10 @@
     }
 
     function showComplete() {
-        document.getElementById('finalScore').textContent = words.length;
+        const scoreEl = document.getElementById('finalScore');
+        scoreEl.textContent = words.length;
+        scoreEl.classList.remove('shine');
+        requestAnimationFrame(() => scoreEl.classList.add('shine'));
 
         let summary = `word${words.length !== 1 ? 's' : ''}`;
         if (stats.fewest !== null && words.length < stats.fewest) {
