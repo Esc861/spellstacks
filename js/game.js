@@ -235,6 +235,10 @@
         rackEl.style.display = done ? 'none' : 'grid';
         document.getElementById('completedMessage').style.display = done ? 'flex' : 'none';
 
+        const progressBar = document.getElementById('progressBar');
+        progressBar.style.display = done ? 'none' : 'block';
+        document.getElementById('progressFill').style.width = ((used.size + current.length) / 18 * 100) + '%';
+
         if (done) {
             updateCountdown();
         }
