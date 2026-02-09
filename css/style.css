@@ -537,6 +537,16 @@ header {
 }
 .btn.primary:disabled { opacity: 0.4; cursor: default; }
 
+.builder.valid + .actions .btn.primary {
+    box-shadow: 0 0 12px rgba(59, 125, 216, 0.5);
+    animation: btnPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes btnPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(59, 125, 216, 0.4); }
+    50% { box-shadow: 0 0 18px rgba(59, 125, 216, 0.7); }
+}
+
 .completed-message {
     display: none;
     flex-direction: column;
