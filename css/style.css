@@ -192,6 +192,16 @@ header {
     flex: 1;
 }
 
+.word.removing {
+    animation: wordRemove 0.25s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes wordRemove {
+    0% { opacity: 1; transform: translateX(0) scale(1); }
+    100% { opacity: 0; transform: translateX(30px) scale(0.95); }
+}
+
 .word.new {
     animation: magicStack 0.5s ease-out;
 }

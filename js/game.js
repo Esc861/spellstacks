@@ -436,12 +436,22 @@
 
     function removeWord(idx) {
         if (done) return;
-        const word = words[idx].word;
-        words[idx].indices.forEach(i => used.delete(i));
-        words.splice(idx, 1);
-        announce(`${word} removed`);
-        render();
-        save();
+        const wordEl = wordsEl.querySelectorAll('.word')[idx];
+        if (wordEl) {
+            wordEl.classList.add('removing');
+            wordEl.addEventListener('animationend', () => {
+                words[idx].indices.forEach(i => used.delete(i));
+                words.splice(idx, 1);
+                announce(`${words.length >= 0 ? wordEl.dataset.word : ''} removed`);
+                render();
+                save();
+            }, { once: true });
+        } else {
+            words[idx].indices.forEach(i => used.delete(i));
+            words.splice(idx, 1);
+            render();
+            save();
+        }
     }
 
     function resetGame() {
