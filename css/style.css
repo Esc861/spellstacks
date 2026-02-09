@@ -938,7 +938,7 @@ header {
         font-size: 12px;
         border-radius: 2px;
         border-width: 1px;
-        aspect-ratio: 1 / 0.68;
+        aspect-ratio: 1 / 0.55;
     }
 
     .actions {
