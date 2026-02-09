@@ -945,7 +945,7 @@ header {
     }
 
     .tile {
-        font-size: 12px;
+        font-size: 14px;
         border-radius: 2px;
         border-width: 1px;
         aspect-ratio: 1 / 0.55;
