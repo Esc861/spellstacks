@@ -438,6 +438,7 @@
         if (done) return;
         const wordEl = wordsEl.querySelectorAll('.word')[idx];
         if (wordEl) {
+            wordEl.classList.remove('new');
             wordEl.classList.add('removing');
             wordEl.addEventListener('animationend', () => {
                 words[idx].indices.forEach(i => used.delete(i));
