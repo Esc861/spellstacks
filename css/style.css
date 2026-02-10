@@ -726,7 +726,7 @@ header {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: scoreShine 0.8s ease-in-out 0.5s forwards;
+    animation: scoreShine 1.2s ease-in-out 0.5s forwards;
 }
 
 @keyframes scoreShine {
