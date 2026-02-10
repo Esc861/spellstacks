@@ -455,7 +455,7 @@ header {
 .tile.used { opacity: 0.25; cursor: default; }
 
 .tile-select {
-    animation: tileSelect 0.2s ease-out forwards;
+    animation: tileSelect 0.1s ease-out forwards;
 }
 
 @keyframes tileSelect {
@@ -473,7 +473,7 @@ header {
 }
 
 .tile-restore {
-    animation: tileRestore 0.2s ease-out both;
+    animation: tileRestore 0.12s ease-out both;
 }
 
 @keyframes tileRestore {
