@@ -80,13 +80,21 @@
         header{text-align:center;padding:4px 0;flex-shrink:0;position:relative;min-height:60px}
         .logo{display:flex;justify-content:center;height:44px}
         .logo-img{height:44px;width:116px}
-        .words{min-height:40px}
-        .controls{flex:1;display:flex;flex-direction:column}
-        .builder{min-height:48px}
-        .rack{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+        .icon-btn{position:absolute;right:0;top:4px;width:36px;height:36px}
+        .date{display:block;font-size:11px;position:relative;top:-10px;margin-bottom:-10px}
+        .objective{font-size:14px;margin:8px 0;flex-shrink:0}
+        .words{display:flex;flex-direction:column;gap:4px;margin-bottom:4px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:8px}
+        .controls{display:flex;flex:1;flex-direction:column;flex-shrink:0}
+        .builder-group{padding:8px;margin-bottom:4px;flex-shrink:0}
+        .builder{display:flex;height:44px;padding:0 44px 0 10px;margin-bottom:8px;flex-shrink:0;overflow:hidden}
+        .actions{display:flex;flex-shrink:0}
+        .progress-bar{height:3px;margin:4px 0}
+        .rack{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:8px;margin-bottom:6px;flex-shrink:0}
         .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
         .modal{display:none}
         .modal.show{display:flex}
+        .completed-message{display:none}
+        .site-footer{position:fixed;bottom:8px;left:0;right:0;font-size:11px}
         @media(orientation:landscape) and (max-height:500px){header{min-height:0}.logo{display:none}}
     </style>
     <!-- Deferred main stylesheet -->
