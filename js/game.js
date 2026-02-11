@@ -380,6 +380,7 @@
         // Animate the selected tile
         const tile = rackEl.querySelector(`.tile[data-i="${i}"]`);
         if (tile) {
+            tile.classList.remove('tile-reveal');
             tile.classList.add('tile-select');
             tile.disabled = true;
         }
