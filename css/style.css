@@ -105,8 +105,8 @@ header {
     color: var(--muted);
     opacity: 0.7;
     position: relative;
-    top: -10px;
-    margin-bottom: -10px;
+    top: -6px;
+    margin-bottom: -6px;
 }
 
 .objective {
