@@ -501,7 +501,8 @@
     }
 
     function share() {
-        let text = `I completed today's Spellstacks puzzle in only ${words.length} word${words.length !== 1 ? 's' : ''}!`;
+        const emoji = DAILY_EMOJIS[LetterSystem.getDateSeed() % DAILY_EMOJIS.length];
+        let text = `${emoji} I completed today's Spellstacks puzzle in only ${words.length} word${words.length !== 1 ? 's' : ''}!`;
         text += `\n\nCan you do better? Come join me at https://spellstacks.com`;
 
         if (navigator.share) {
