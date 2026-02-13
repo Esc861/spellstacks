@@ -90,6 +90,7 @@
         .actions{display:flex;flex-shrink:0}
         .progress-bar{height:3px;margin:4px 0}
         .rack{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:8px;margin-bottom:6px;flex-shrink:0}
+        .tile{aspect-ratio:1/1.1;border:2px solid var(--tile-border);border-radius:6px}
         .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
         .modal{display:none}
         .modal.show{display:flex}
@@ -147,7 +148,7 @@
 
             <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
 
-            <div class="rack" id="rack"></div>
+            <div class="rack" id="rack"><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button><button class="tile" disabled></button></div>
 
             <div class="completed-message" id="completedMessage">
                 <p>Nice work! Come back tomorrow for a new puzzle.</p>
