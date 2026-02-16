@@ -193,16 +193,6 @@ header {
     flex: 1;
 }
 
-.word.removing {
-    animation: wordRemove 0.25s ease-in forwards;
-    pointer-events: none;
-}
-
-@keyframes wordRemove {
-    0% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0.9); }
-}
-
 .word.new {
     animation: magicStack 0.5s ease-out;
 }
@@ -454,42 +444,6 @@ header {
 .tile:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .tile:disabled { cursor: default; }
 .tile.used { opacity: 0.25; cursor: default; }
-
-.tile-select {
-    animation: tileSelect 0.1s ease-out forwards;
-}
-
-@keyframes tileSelect {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    40% {
-        transform: scale(0.8);
-    }
-    100% {
-        transform: scale(0.9);
-        opacity: 0.25;
-    }
-}
-
-.tile-restore {
-    animation: tileRestore 0.12s ease-out both;
-}
-
-@keyframes tileRestore {
-    0% {
-        transform: scale(0.9);
-        opacity: 0.25;
-    }
-    60% {
-        transform: scale(1.06);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
 
 /* Buttons */
 .actions {

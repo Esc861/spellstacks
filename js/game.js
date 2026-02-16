@@ -358,33 +358,17 @@
 
     function toggleTile(i) {
         if (done || used.has(i) || current.includes(i)) return;
-
-        // Animate the selected tile
-        const tile = rackEl.querySelector(`.tile[data-i="${i}"]`);
-        if (tile) {
-            tile.classList.add('tile-select');
-            tile.disabled = true;
-        }
-
         current.push(i);
         haptic(10);
         renderBuilder();
+        renderRack();
     }
 
     function deleteLetter() {
         if (current.length === 0) return;
-        const restored = current.pop();
-
-        // Animate the tile back
-        const tile = rackEl.querySelector(`.tile[data-i="${restored}"]`);
-        if (tile) {
-            tile.disabled = false;
-            tile.classList.remove('tile-select');
-            tile.classList.add('tile-restore');
-            tile.addEventListener('animationend', () => tile.classList.remove('tile-restore'), { once: true });
-        }
-
+        current.pop();
         renderBuilder();
+        renderRack();
     }
 
     function addWord() {
@@ -418,23 +402,12 @@
 
     function removeWord(idx) {
         if (done) return;
-        const wordEl = wordsEl.querySelectorAll('.word')[idx];
-        if (wordEl) {
-            wordEl.classList.remove('new');
-            wordEl.classList.add('removing');
-            wordEl.addEventListener('animationend', () => {
-                words[idx].indices.forEach(i => used.delete(i));
-                words.splice(idx, 1);
-                announce(`${words.length >= 0 ? wordEl.dataset.word : ''} removed`);
-                render();
-                save();
-            }, { once: true });
-        } else {
-            words[idx].indices.forEach(i => used.delete(i));
-            words.splice(idx, 1);
-            render();
-            save();
-        }
+        const word = words[idx].word;
+        words[idx].indices.forEach(i => used.delete(i));
+        words.splice(idx, 1);
+        announce(`${word} removed`);
+        render();
+        save();
     }
 
     function resetGame() {
