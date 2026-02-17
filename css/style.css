@@ -394,7 +394,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    flex: 0 1 32px;
     min-width: 20px;
     height: 32px;
     background: var(--tile-bg);
@@ -856,7 +856,7 @@ header {
     }
 
     .builder .letter {
-        width: 24px;
+        flex: 0 1 24px;
         height: 24px;
         font-size: 13px;
     }
