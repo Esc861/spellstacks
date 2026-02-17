@@ -938,6 +938,7 @@ header {
         display: flex;
         flex-direction: column;
         gap: 12px;
+        min-width: 0;
     }
 
     .actions {
@@ -955,6 +956,7 @@ header {
     .tile {
         min-width: 48px;
         height: 54px;
+        font-size: 18px;
     }
 
     .builder {
@@ -972,10 +974,6 @@ header {
     }
 
     .objective { font-size: 15px; }
-
-    .tile {
-        font-size: 18px;
-    }
 
     .word {
         font-size: 17px;
