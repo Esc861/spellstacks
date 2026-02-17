@@ -684,6 +684,13 @@ header {
 
 .modal-content .btn { margin-top: 8px; }
 
+.share-row { display: flex; justify-content: center; gap: 10px; margin-top: 8px; }
+.share-social { width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; background: var(--key-bg); border-radius: 8px; margin-top: 0; }
+.share-social:hover { opacity: 0.85; }
+#shareX:hover { background: #000; color: #fff; }
+#shareFB:hover { background: #1877F2; color: #fff; }
+#shareReddit:hover { background: #FF4500; color: #fff; }
+
 .modal-footer {
     margin-top: 20px;
     padding-top: 16px;

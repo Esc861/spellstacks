@@ -151,6 +151,9 @@
         document.getElementById('completedMessage').addEventListener('click', showComplete);
 
         document.getElementById('shareBtn').addEventListener('click', share);
+        document.getElementById('shareX').addEventListener('click', () => shareSocial('x'));
+        document.getElementById('shareFB').addEventListener('click', () => shareSocial('facebook'));
+        document.getElementById('shareReddit').addEventListener('click', () => shareSocial('reddit'));
         document.getElementById('replayBtn').addEventListener('click', replay);
 
         document.querySelectorAll('.modal').forEach(m => {
@@ -473,16 +476,34 @@
         save();
     }
 
-    function share() {
+    function getShareText() {
         const emoji = DAILY_EMOJIS[LetterSystem.getDateSeed() % DAILY_EMOJIS.length];
         let text = `${emoji} I completed today's Spellstacks puzzle in only ${words.length} word${words.length !== 1 ? 's' : ''}!`;
         text += `\n\nCan you do better? Come join me at https://spellstacks.com`;
+        return text;
+    }
 
+    function share() {
+        const text = getShareText();
         if (navigator.share) {
             navigator.share({ text }).catch(() => copy(text));
         } else {
             copy(text);
         }
+    }
+
+    function shareSocial(platform) {
+        const text = getShareText();
+        const url = 'https://spellstacks.com';
+        let shareUrl;
+        if (platform === 'x') {
+            shareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
+        } else if (platform === 'facebook') {
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(text)}&u=${encodeURIComponent(url)}`;
+        } else if (platform === 'reddit') {
+            shareUrl = `https://www.reddit.com/submit?title=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+        }
+        window.open(shareUrl, '_blank', 'noopener');
     }
 
     function copy(text) {
