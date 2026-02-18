@@ -424,9 +424,7 @@ header {
 }
 
 .tile {
-    min-width: 44px;
-    height: 48px;
-    flex-shrink: 0;
+    aspect-ratio: 1 / 1.1;
     border: 2px solid var(--tile-border);
     border-radius: 6px;
     background: var(--tile-bg);
@@ -436,6 +434,13 @@ header {
     cursor: pointer;
     position: relative;
     transition: transform 0.1s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.rack .tile {
+    min-width: 44px;
+    height: 48px;
+    flex-shrink: 0;
+    aspect-ratio: auto;
 }
 
 .tile:hover:not(:disabled):not(.used) {
@@ -895,6 +900,9 @@ header {
         font-size: 14px;
         border-radius: 2px;
         border-width: 1px;
+    }
+
+    .rack .tile {
         min-width: 30px;
         height: 22px;
     }
@@ -954,9 +962,12 @@ header {
     }
 
     .tile {
+        font-size: 18px;
+    }
+
+    .rack .tile {
         min-width: 48px;
         height: 54px;
-        font-size: 18px;
     }
 
     .builder {

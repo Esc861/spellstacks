@@ -1,5 +1,5 @@
 // Spellstacks Service Worker
-const CACHE = 'spellstacks-v30';
+const CACHE = 'spellstacks-v31';
 const ASSETS = [
     '/',
     '/index.html',
