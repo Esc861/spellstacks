@@ -346,7 +346,8 @@ header {
     transition: background 0.15s, border-color 0.15s;
     position: relative;
     flex-shrink: 0;
-    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .builder.valid { background: rgba(59, 125, 216, 0.12); }
@@ -412,6 +413,7 @@ header {
 /* Letter rack */
 .rack {
     display: flex;
+    flex-wrap: wrap;
     gap: 4px;
     padding: 8px;
     background: var(--card);
@@ -419,8 +421,6 @@ header {
     margin-bottom: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     flex-shrink: 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 .tile {
@@ -437,10 +437,7 @@ header {
 }
 
 .rack .tile {
-    min-width: 44px;
-    height: 48px;
-    flex-shrink: 0;
-    aspect-ratio: auto;
+    flex: 0 0 calc((100% - 32px) / 9);
 }
 
 .tile:hover:not(:disabled):not(.used) {
@@ -892,8 +889,6 @@ header {
         gap: 2px;
         margin: 0;
         flex: 1;
-        overflow-x: auto;
-        flex-wrap: nowrap;
     }
 
     .tile {
@@ -903,8 +898,7 @@ header {
     }
 
     .rack .tile {
-        min-width: 30px;
-        height: 22px;
+        flex: 0 0 calc((100% - 16px) / 9);
     }
 
     .actions {
@@ -961,18 +955,12 @@ header {
         flex-shrink: 0;
     }
 
-    .rack {
-        flex-wrap: wrap;
-        overflow-x: visible;
-    }
-
     .tile {
         font-size: 18px;
     }
 
     .rack .tile {
-        min-width: 32px;
-        height: 38px;
+        flex: 0 0 calc((100% - 32px) / 9);
     }
 
     .builder {
