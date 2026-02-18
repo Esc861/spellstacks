@@ -961,13 +961,18 @@ header {
         flex-shrink: 0;
     }
 
+    .rack {
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
+
     .tile {
         font-size: 18px;
     }
 
     .rack .tile {
-        min-width: 48px;
-        height: 54px;
+        min-width: 32px;
+        height: 38px;
     }
 
     .builder {
