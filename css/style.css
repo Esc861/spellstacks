@@ -335,9 +335,10 @@ header {
 .builder {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 4px;
     height: 44px;
-    padding: 0 10px;
+    padding: 0 44px 0 10px;
     background: rgba(74, 144, 217, 0.08);
     border-radius: 6px;
     margin-bottom: 8px;
@@ -345,16 +346,17 @@ header {
     transition: background 0.15s, border-color 0.15s;
     position: relative;
     flex-shrink: 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
 }
 
 .builder.valid { background: rgba(59, 125, 216, 0.12); }
 .builder.invalid { background: rgba(227, 106, 46, 0.12); }
 
 .delete-btn {
-    flex-shrink: 0;
-    margin-left: auto;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 34px;
     height: 34px;
     border: none;
@@ -378,7 +380,7 @@ header {
     color: #fff;
 }
 
-.delete-btn:active { transform: scale(0.95); }
+.delete-btn:active { transform: translateY(-50%) scale(0.95); }
 
 .hint {
     color: var(--muted);
@@ -392,7 +394,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 32px;
+    flex: 0 1 32px;
+    min-width: 20px;
     height: 32px;
     background: var(--tile-bg);
     border: 2px solid var(--tile-border);
@@ -400,6 +403,7 @@ header {
     font-weight: 700;
     font-size: 16px;
     color: var(--text);
+    flex-shrink: 1;
 }
 
 .builder.valid .letter { border-color: var(--valid); }
@@ -861,12 +865,12 @@ header {
     .builder {
         height: 36px;
         margin-bottom: 4px;
-        padding: 0 6px;
+        padding: 0 32px 0 6px;
         flex-shrink: 0;
     }
 
     .builder .letter {
-        flex: 0 0 24px;
+        flex: 0 1 24px;
         height: 24px;
         font-size: 13px;
     }
@@ -874,6 +878,7 @@ header {
     .delete-btn {
         width: 26px;
         height: 26px;
+        right: 4px;
     }
 
     .hint { font-size: 12px; }
@@ -889,6 +894,7 @@ header {
         font-size: 14px;
         border-radius: 2px;
         border-width: 1px;
+        aspect-ratio: 1 / 0.55;
     }
 
     .rack .tile {
