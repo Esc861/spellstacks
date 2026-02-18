@@ -437,6 +437,8 @@ header {
 
 .rack .tile {
     flex: 0 0 calc((100% - 32px) / 9);
+    aspect-ratio: auto;
+    height: 44px;
 }
 
 .tile:hover:not(:disabled):not(.used) {
@@ -899,6 +901,8 @@ header {
 
     .rack .tile {
         flex: 0 0 calc((100% - 16px) / 9);
+        aspect-ratio: auto;
+        height: 22px;
     }
 
     .actions {
@@ -961,6 +965,7 @@ header {
 
     .rack .tile {
         flex: 0 0 calc((100% - 32px) / 9);
+        height: 48px;
     }
 
     .builder {
