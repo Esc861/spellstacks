@@ -346,7 +346,8 @@ header {
     transition: background 0.15s, border-color 0.15s;
     position: relative;
     flex-shrink: 0;
-    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .builder.valid { background: rgba(59, 125, 216, 0.12); }
