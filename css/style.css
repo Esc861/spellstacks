@@ -953,9 +953,14 @@ header {
         flex-shrink: 0;
     }
 
-    .tile {
-        min-width: 48px;
-        height: 54px;
+    .rack {
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
+
+    .rack .tile {
+        min-width: 0;
+        flex: 0 0 calc((100% - 20px) / 6);
         font-size: 18px;
     }
 
