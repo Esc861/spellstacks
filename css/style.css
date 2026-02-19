@@ -362,8 +362,8 @@ header {
 
 .delete-btn {
     flex-shrink: 0;
-    align-self: stretch;
     width: 34px;
+    height: 44px;
     border: none;
     border-radius: 6px;
     background: var(--tile-border);
