@@ -417,6 +417,7 @@ header {
 /* Letter rack */
 .rack {
     display: flex;
+    flex-wrap: wrap;
     gap: 4px;
     padding: 8px;
     background: var(--card);
@@ -424,14 +425,9 @@ header {
     margin-bottom: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     flex-shrink: 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 .tile {
-    min-width: 44px;
-    height: 48px;
-    flex-shrink: 0;
     border: 2px solid var(--tile-border);
     border-radius: 6px;
     background: var(--tile-bg);
@@ -441,6 +437,12 @@ header {
     cursor: pointer;
     position: relative;
     transition: transform 0.1s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.rack .tile {
+    flex: 1 0 calc((100% - 20px) / 6);
+    max-width: calc((100% - 20px) / 6);
+    aspect-ratio: 1 / 1.1;
 }
 
 .tile:hover:not(:disabled):not(.used) {
@@ -901,7 +903,12 @@ header {
         font-size: 14px;
         border-radius: 2px;
         border-width: 1px;
-        min-width: 30px;
+    }
+
+    .rack .tile {
+        flex: 0 0 30px;
+        max-width: none;
+        aspect-ratio: auto;
         height: 22px;
     }
 
@@ -973,8 +980,6 @@ header {
     }
 
     .rack .tile {
-        min-width: 0;
-        flex: 0 0 calc((100% - 20px) / 6);
         font-size: 18px;
     }
 
