@@ -355,6 +355,11 @@ header {
     min-width: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.builder::-webkit-scrollbar {
+    display: none;
 }
 
 .builder.valid { background: rgba(59, 125, 216, 0.12); }
