@@ -230,7 +230,7 @@
     }
 
     // Cache DOM references
-    let rackEl, builderEl, wordsEl, addBtnEl, builderGroupEl;
+    let rackEl, builderEl, wordsEl, addBtnEl, builderGroupEl, deleteBtnEl;
 
     function cacheDom() {
         rackEl = document.getElementById('rack');
@@ -238,6 +238,7 @@
         wordsEl = document.getElementById('words');
         addBtnEl = document.getElementById('addBtn');
         builderGroupEl = document.querySelector('.builder-group');
+        deleteBtnEl = document.getElementById('deleteBtn');
 
         // Event delegation - single listener on parent
         rackEl.addEventListener('click', e => {
@@ -262,11 +263,7 @@
             }
         });
 
-        builderEl.addEventListener('click', e => {
-            if (e.target.closest('.delete-btn')) {
-                deleteLetter();
-            }
-        });
+        deleteBtnEl.addEventListener('click', () => deleteLetter());
     }
 
     function renderRack() {
@@ -290,6 +287,7 @@
         if (current.length === 0) {
             builderEl.innerHTML = '<span class="hint">Select letters below</span>';
             builderEl.className = 'builder';
+            deleteBtnEl.style.display = 'none';
             return;
         }
 
@@ -298,8 +296,9 @@
 
         builderEl.innerHTML = current.map(i =>
             `<span class="letter">${letters[i]}</span>`
-        ).join('') + '<button class="delete-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg></button>';
+        ).join('');
 
+        deleteBtnEl.style.display = '';
         builderEl.className = 'builder' + (word.length >= 2 ? (valid ? ' valid' : ' invalid') : '');
     }
 

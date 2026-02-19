@@ -332,20 +332,26 @@ header {
     flex-shrink: 0;
 }
 
+.builder-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
 .builder {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
     height: 44px;
-    padding: 0 6px 0 10px;
+    padding: 0 10px;
     background: rgba(74, 144, 217, 0.08);
     border-radius: 6px;
-    margin-bottom: 8px;
     border: 1px dashed var(--tile-border);
     transition: background 0.15s, border-color 0.15s;
-    position: relative;
-    flex-shrink: 0;
+    flex: 1;
+    min-width: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -354,8 +360,6 @@ header {
 .builder.invalid { background: rgba(227, 106, 46, 0.12); }
 
 .delete-btn {
-    position: sticky;
-    right: 0;
     flex-shrink: 0;
     width: 34px;
     height: 34px;
@@ -380,7 +384,7 @@ header {
     color: #fff;
 }
 
-.delete-btn:active { transform: scale(0.95); }
+.delete-btn:active { transform: scale(0.9); }
 
 .hint {
     color: var(--muted);
@@ -861,11 +865,13 @@ header {
         margin-bottom: 2px;
     }
 
+    .builder-row {
+        margin-bottom: 4px;
+    }
+
     .builder {
         height: 36px;
-        margin-bottom: 4px;
-        padding: 0 4px 0 6px;
-        flex-shrink: 0;
+        padding: 0 6px;
     }
 
     .builder .letter {
@@ -877,7 +883,6 @@ header {
     .delete-btn {
         width: 26px;
         height: 26px;
-        right: 4px;
     }
 
     .hint { font-size: 12px; }

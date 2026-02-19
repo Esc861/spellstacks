@@ -86,7 +86,8 @@
         .words{display:flex;flex-direction:column;gap:4px;margin-bottom:4px;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:8px}
         .controls{display:flex;flex:1;flex-direction:column;flex-shrink:0}
         .builder-group{padding:8px;margin-bottom:4px;flex-shrink:0}
-        .builder{display:flex;height:44px;padding:0 6px 0 10px;margin-bottom:8px;flex-shrink:0;overflow-x:auto}
+        .builder-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+        .builder{display:flex;height:44px;padding:0 10px;flex:1;min-width:0;overflow-x:auto}
         .actions{display:flex;flex-shrink:0}
         .progress-bar{height:3px;margin:4px 0}
         .rack{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:8px;margin-bottom:6px;flex-shrink:0}
@@ -137,8 +138,11 @@
 
         <div class="controls" data-nosnippet>
             <div class="builder-group">
-                <div class="builder" id="builder">
-                    <span class="hint">Select letters below</span>
+                <div class="builder-row">
+                    <div class="builder" id="builder">
+                        <span class="hint">Select letters below</span>
+                    </div>
+                    <button class="delete-btn" id="deleteBtn" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg></button>
                 </div>
 
                 <div class="actions" id="actions">
