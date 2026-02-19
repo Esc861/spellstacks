@@ -350,6 +350,7 @@ header {
     border-radius: 6px;
     border: 1px dashed var(--tile-border);
     transition: background 0.15s, border-color 0.15s;
+    position: relative;
     flex: 1;
     min-width: 0;
     overflow-x: auto;
