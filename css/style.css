@@ -955,6 +955,14 @@ header {
         margin-bottom: 0;
     }
 
+    .builder-row {
+        margin-bottom: 10px;
+    }
+
+    .delete-btn {
+        height: 52px;
+    }
+
     .builder, .rack {
         flex-shrink: 0;
     }
@@ -972,7 +980,6 @@ header {
 
     .builder {
         height: 52px;
-        margin-bottom: 10px;
     }
 
     .logo-img {
