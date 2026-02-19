@@ -338,7 +338,7 @@ header {
     justify-content: center;
     gap: 4px;
     height: 44px;
-    padding: 0 44px 0 10px;
+    padding: 0 6px 0 10px;
     background: rgba(74, 144, 217, 0.08);
     border-radius: 6px;
     margin-bottom: 8px;
@@ -354,10 +354,9 @@ header {
 .builder.invalid { background: rgba(227, 106, 46, 0.12); }
 
 .delete-btn {
-    position: absolute;
-    right: 6px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: sticky;
+    right: 0;
+    flex-shrink: 0;
     width: 34px;
     height: 34px;
     border: none;
@@ -381,7 +380,7 @@ header {
     color: #fff;
 }
 
-.delete-btn:active { transform: translateY(-50%) scale(0.95); }
+.delete-btn:active { transform: scale(0.95); }
 
 .hint {
     color: var(--muted);
@@ -865,7 +864,7 @@ header {
     .builder {
         height: 36px;
         margin-bottom: 4px;
-        padding: 0 32px 0 6px;
+        padding: 0 4px 0 6px;
         flex-shrink: 0;
     }
 
