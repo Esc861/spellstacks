@@ -1,3 +1,4 @@
+a
 aa
 aah
 aahed
@@ -81552,6 +81553,7 @@ hysteroscopy
 hysterotomies
 hysterotomy
 hyte
+i
 iamb
 iambi
 iambic
@@ -114342,6 +114344,7 @@ nystagmus
 nystagmuses
 nystatin
 nystatins
+o
 oaf
 oafish
 oafishly

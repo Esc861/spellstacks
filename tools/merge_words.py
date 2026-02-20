@@ -33,6 +33,9 @@ def main():
 
     print(f"  Got {len(words):,} valid words")
 
+    # Add single-letter words not in Scrabble dictionaries
+    words.update({"a", "i", "o"})
+
     merged = sorted(words)
     with open(WORDS_FILE, "w", encoding="utf-8", newline="\n") as f:
         for word in merged:

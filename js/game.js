@@ -292,14 +292,14 @@
         }
 
         const word = current.map(i => letters[i]).join('');
-        const valid = word.length >= 2 && Dictionary.isValidWord(word);
+        const valid = word.length >= 1 && Dictionary.isValidWord(word);
 
         builderEl.innerHTML = current.map(i =>
             `<span class="letter">${letters[i]}</span>`
         ).join('');
 
         deleteBtnEl.style.display = '';
-        builderEl.className = 'builder' + (word.length >= 2 ? (valid ? ' valid' : ' invalid') : '');
+        builderEl.className = 'builder' + (word.length >= 1 ? (valid ? ' valid' : ' invalid') : '');
     }
 
     let lastWordCount = 0;
