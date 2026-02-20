@@ -259,7 +259,7 @@
             const wordEl = e.target.closest('.word');
             if (wordEl) {
                 const word = wordEl.dataset.word.toLowerCase();
-                window.open(`https://en.wiktionary.org/wiki/${word}#English`, '_blank', 'noopener');
+                window.open(`https://www.merriam-webster.com/dictionary/${word}`, '_blank', 'noopener');
             }
         });
 
